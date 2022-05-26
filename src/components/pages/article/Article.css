@@ -1,0 +1,53 @@
+.ArticleCard{
+    width: 100%;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+  /* border: 1px solid rgba(252, 252, 252, 0.18); */
+
+}
+
+.textArea{
+    background-color: transparent;
+}
+
+.textArea :active{
+    background-color: transparent;
+}
+
+.head img{
+    border-radius: 50%;
+}
+
+.askQsn{
+    border: none;
+}
+
+.post__info{
+    display: flex;
+    align-items: center;
+}
+
+.post__info h5{
+    margin-left: 10px;
+}
+
+.post__info small{
+    margin-left: 10px;
+}
+
+.post__body{
+    margin-top: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+}
+
+.post__answer img{
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+

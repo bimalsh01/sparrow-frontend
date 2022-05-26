@@ -1,0 +1,11 @@
+.spaceSection{
+    background: rgba(116, 116, 230, 0.25);
+    width: 100%;
+    height: 100vh;
+    border-top-left-radius: 15px;
+    /* border-top-right-radius: 15px; */
+    margin-top: 20px;
+  
+  
+  
+  }

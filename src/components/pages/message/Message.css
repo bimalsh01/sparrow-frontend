@@ -1,0 +1,285 @@
+.Cscroller {
+
+    /* width: 100%; */
+    height: 58vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+
+}
+
+.Cscroller::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+}
+
+
+
+.Cscroller::-webkit-scrollbar-thumb {
+    background-color: #1553b1;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+}
+
+.Mscroller {
+
+    width: 100%;
+    height: 73vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+
+}
+
+.Mscroller::-webkit-scrollbar {
+    /* background-color: #1553b1;    color of the scroll thumb */
+    width: 12px;
+    /* width of the entire scrollbar */
+}
+
+
+
+.Cscroller::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+}
+
+body {
+    margin-top: 20px;
+}
+
+.card {
+    transition: .5s;
+    border: 0;
+    margin-bottom: 30px;
+    border-radius: .55rem;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+}
+
+.chat-app .people-list {
+    width: 280px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 7
+}
+
+.chat-app .chat {
+    margin-left: 280px;
+}
+
+.people-list {
+    -moz-transition: .5s;
+    -o-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s
+}
+
+.people-list .chat-list li {
+    padding: 10px 15px;
+    border-radius: 3px
+}
+
+.people-list .chat-list li:hover {
+    background-color: rgba(194, 203, 242, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: white;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.people-list .chat-list li.active {
+    border: 1px solid transparent;
+    background-color: rgba(194, 203, 242, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: white;
+
+
+}
+
+.people-list .chat-list img {
+    width: 45px;
+    border-radius: 50%
+}
+
+.people-list img {
+    float: left;
+    border-radius: 50%
+}
+
+.people-list .about {
+    float: left;
+    padding-left: 8px
+}
+
+.people-list .status {
+    color: rgb(173, 163, 163);
+    font-size: 13px
+}
+
+.online,
+.offline,
+.me {
+    margin-right: 2px;
+    font-size: 8px;
+    vertical-align: middle
+}
+
+.online {
+    color: #86c541
+}
+
+.offline {
+    color: #e47297
+}
+
+.me {
+    color: #1d8ecd
+}
+
+.float-right {
+    float: right
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .chat-app .people-list {
+        height: 465px;
+        width: 100%;
+        overflow-x: auto;
+        background: #fff;
+        left: -400px;
+        display: none
+    }
+
+    .chat-app .people-list.open {
+        left: 0
+    }
+
+    .chat-app .chat {
+        margin: 0
+    }
+
+    .chat-app .chat .chat-header {
+        border-radius: 0.55rem 0.55rem 0 0
+    }
+
+    .chat-app .chat-history {
+        height: 300px;
+        overflow-x: auto
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .chat-app .chat-list {
+        height: 650px;
+        overflow-x: auto
+    }
+
+    .chat-app .chat-history {
+        height: 600px;
+        overflow-x: auto
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    .chat-app .chat-list {
+        height: 480px;
+        overflow-x: auto
+    }
+
+    .chat-app .chat-history {
+        height: calc(100vh - 350px);
+        overflow-x: auto
+    }
+}
+
+
+.imessage {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.imessage p {
+    border-radius: 1.15rem;
+    line-height: 1.25;
+    max-width: 75%;
+    padding: 0.5rem .875rem;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.imessage p::before,
+.imessage p::after {
+    bottom: -0.1rem;
+    content: "";
+    height: 1rem;
+    position: absolute;
+}
+
+p.from-me {
+    align-self: flex-end;
+    background-color: #248bf5;
+    color: #fff;
+}
+
+.message-data-time {
+    color: rgb(121, 141, 215);
+
+
+}
+
+.message-data {
+    padding: 10px;
+}
+
+p[class^="from-"] {
+    margin: 0.5rem 0;
+    width: fit-content;
+}
+
+p.from-me~p.from-me {
+    margin: 0.25rem 0 0;
+}
+
+
+p.from-them {
+    background-color: rgba(194, 203, 242, 0.4);
+    border-radius: 15px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: white;
+}
+
+p.from-them:before {
+    border-bottom-right-radius: 0.8rem 0.7rem;
+    border-left: 1rem solid #5a78a1f7;
+    backdrop-filter: blur(5px);
+    left: -0.35rem;
+    transform: translate(0, -0.1rem);
+}
+
+
+p[class^="from-"].emoji {
+    background: none;
+    font-size: 2.5rem;
+}
+
+p[class^="from-"].emoji::before {
+    content: none;
+}
+
+.no-tail::before {
+    display: none;
+}
+
+.mess .from-me{
+    align-items: flex-end;
+    background-color: #72ade8;
+}
