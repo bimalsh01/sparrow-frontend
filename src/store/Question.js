@@ -1,21 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-
     questionName:'',
     postedBy:{
         fname:'',
         lname:'',
         createdAt:'',
     }
-  
 }
 
 export const QuestionSlice = createSlice({
   name: 'qsn',
   initialState,
   reducers: {
-
     setQsn:(state,action) =>{
         state.qsn = action.payload;
     }

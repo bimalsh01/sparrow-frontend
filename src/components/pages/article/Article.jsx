@@ -11,8 +11,8 @@ import ReactHtmlParser from 'html-react-parser';
 
 const Article = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [data, setData] = useState([])
+
     useEffect(() => {
         getQuestions().then(res => {
             setData(res.data.questions)
