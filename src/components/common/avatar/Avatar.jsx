@@ -6,7 +6,7 @@ const Avatar = ({width}) => {
   return (
     <>
         <div>
-          <img width={width} className="profileImgg" src="/images/user.jpg" alt="Profile pic"  />
+          <img width={width} className="profileImgg" src="/images/user.png" alt="Profile pic"  />
         </div>
     </>
   )

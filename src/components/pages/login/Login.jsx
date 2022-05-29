@@ -45,7 +45,7 @@ const Login = () => {
             </div>
             <a href=""><p>Forgot passcode?</p></a>
             <button onClick={loginClick} class="w-100 btn shadow-0 btn-lg btn-primary" type="">
-              Sign up
+              Login  <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </button>
             <small class="text-muted">
               By clicking Login, you will enter in next  world. <br />

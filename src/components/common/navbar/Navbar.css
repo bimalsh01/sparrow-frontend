@@ -5,9 +5,10 @@
 .navbar{
     /* background-color: #111827; */
     color: rgb(176, 130, 130)  ;
-    backdrop-filter: blur(7px);
-    border-bottom: 1px solid;
-    border-color: rgb(99, 100, 114);
+    backdrop-filter: blur(17px);
+    top: 1%;
+    border-radius: 7px;
+    background: rgba(0, 0, 0, 0.25);
 }
 
 

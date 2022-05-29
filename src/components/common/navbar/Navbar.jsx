@@ -55,7 +55,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light sticky-top justify-content-around ">
+      <nav className="container navbar navbar-expand-lg navbar-light sticky-top justify-content-around ">
         <div className="container">
           <Link to={"/"}>
             <h3 className="fw-bold">

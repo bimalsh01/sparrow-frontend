@@ -79,7 +79,7 @@ const QnaPage = () => {
                                     <div>
                                         <hr className='mt-3 mb-3' />
                                         <div className="answer d-flex align-items-center">
-                                            <img className="profile_img mt-2" src="/images/user.jpg" alt="Profile pic" width="8%" />
+                                            <img className="profile_img mt-2" src="/images/user.png" alt="Profile pic" width="8%" />
                                             <div className='ms-2'>
                                                 <p>{data.answeredBy.fname} {data.answeredBy.lname}</p>
                                                 <p className='m-0'>Answered on {data.answeredOn}</p>

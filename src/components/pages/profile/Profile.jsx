@@ -79,7 +79,7 @@ export const Profile = () => {
       <div className="d-flex justify-content-between">
         <div className="mainSetting">
           <div>
-            <img className="profileImg" src="/images/user.jpg" alt="Profile pic" />
+            <img className="profileImg" src="/images/user.png" alt="Profile pic" />
           </div>
           <div className="name">
             <h2>{fname} {lname}</h2>

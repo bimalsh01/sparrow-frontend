@@ -11,7 +11,7 @@ const LeftSide = () => {
     <>
         <Link to={"/profile"}>
             <div className="mainProfile">
-              <img className="profile_img" src="/images/user.jpg" alt="Profile pic" width="35%" />
+              <img className="profile_img" src="/images/user.png" alt="Profile pic" width="35%" />
               <div className="name">
                 <h5>{fname} {lname}</h5>
                 <span class="badge bg-primary">@{username}</span>
@@ -20,13 +20,13 @@ const LeftSide = () => {
           </Link>
           <div className="mt-4 flex-column">
 
-            <h5><i class="fa-solid me-2 fs-4 fa-house-circle-check"></i>Homepage</h5>
+            <h5 className='fw-bold mb-3'><img className='me-1' src="/images/home.png" alt="" width={"15%"} />Homepage</h5>
             <Link to={'/message'}>
-            <h5><i class="fa-solid mt-3 me-2 fs-4 fa-comments"></i>Messages</h5>
+            <h5 className='fw-bold ms-1 mb-3'><img className='me-1' src="/images/mail.png" alt="" width={"12%"} /> Messages</h5>
             </Link>
 
-            <h5><i class="fa-solid mt-3 me-2 fs-4 fa-circle-question"></i>Unanswered</h5>
-            <h5><i class="fa-solid mt-3 me-2 fs-4 fa-house-circle-check"></i>Homepage</h5>
+            <h5 className='fw-bold ms-1 mb-3'><img className='me-2' src="/images/qsns.png" alt="" width={"12%"} />Unanswered</h5>
+            <h5 className='fw-bold ms-1'><img className='me-2' src="/images/bookmark.png" alt="" width={"13%"} />Homepage</h5>
           </div>
 
           <div className="spaceSection">

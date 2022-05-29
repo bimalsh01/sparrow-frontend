@@ -128,7 +128,7 @@ const Message = () => {
                 <hr />
                 <div class="row clearfix">
                     <div class="col-lg-12">
-                        <div class="card chat-app">
+                        <div class="card-mess chat-app">
                             <div class="people-list">
                                 <ul class="list-unstyled chat-list mt-2 Mscroller">
 
