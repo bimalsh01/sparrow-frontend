@@ -8,7 +8,7 @@ const initialState = {
     hash: ''
   },
   name: '',
-  profile: '',
+  profile_upload: '',
   qsn: {
     questionName: '',
     postedBy: {
@@ -49,7 +49,7 @@ export const AllSlice = createSlice({
     },
 
     setProfile: (state, action) => {
-      state.profile = action.payload;
+      state.profile_upload = action.payload;
     },
 
     setQsn: (state, action) => {

@@ -4,13 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllQuestionsByUser, getUser, updateProfile } from '../../../http/Index';
 import { setSnackbar } from '../../../store/SnackBar';
 import { Link } from 'react-router-dom';
+import { setProfile } from '../../../store/Slice';
 
 
 export const Profile = () => {
   const [followerslength,setfollowerslength] = useState(null);
   const [followinglength,setfollowinglength] = useState(null);
 
-  const { id, fname, lname, username, followers, following, phone, address } = useSelector(state => state.Auth.user);
+  const { id, fname,secondaryEmail, lname,profile, username,  followers, following, phone, address } = useSelector(state => state.Auth.user);
+  const {profile_upload} = useSelector(state => state.Auth);
 
   const [toggleState, setToggleState] = React.useState(1);
   const [image, setImage] = useState("");
@@ -18,14 +20,16 @@ export const Profile = () => {
 
   const [firstname, setFirstname] = useState(fname);
   const [lastname, setLastname] = useState(lname);
-  const [secemail, setSecemail] = useState("");
-  const [adstate, setAdstate] = useState("");
-  const [city, setCity] = useState("");
+  const [secemail, setSecemail] = useState(secondaryEmail);
+  const [adstate, setAdstate] = useState(address[0].state);
+  const [city, setCity] = useState(address[0].state);
   const dispatch = useDispatch();
 
   const toggleTab = (index) => {
     setToggleState(index);
   }
+
+  console.log(profile, "profile");
 
 
   function captureImage(e) {
@@ -35,7 +39,7 @@ export const Profile = () => {
     reader.onloadend = function () {
       console.log(reader.result);
       setImage(reader.result);
-      // dispatch(setProfile(reader.result));
+      dispatch(setProfile(reader.result));
     }
   };
 
@@ -64,7 +68,7 @@ export const Profile = () => {
     }
 
     try {
-      const { data } = await updateProfile({ id: id, fname: firstname, lname: lastname, secondaryEmail: secemail, state: adstate, city: city });
+      const { data } = await updateProfile({ id: id, fname: firstname, lname: lastname, secondaryEmail: secemail, state: adstate, city: city, profile: profile_upload });
       console.log(data);
       dispatch(setSnackbar(true, "success", "success", "Updated"));
 
@@ -79,7 +83,7 @@ export const Profile = () => {
       <div className="d-flex justify-content-between">
         <div className="mainSetting">
           <div>
-            <img className="profileImg" src="/images/user.png" alt="Profile pic" />
+            <img className="profileImg" src={profile} alt="Profile pic" />
           </div>
           <div className="name">
             <h2>{fname} {lname}</h2>

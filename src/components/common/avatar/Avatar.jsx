@@ -1,12 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import "././Avatar.css"
 
 const Avatar = ({width}) => {
-    console.log(width);
+    const {profile} = useSelector(state => state.Auth.user)
   return (
     <>
         <div>
-          <img width={width} className="profileImgg" src="/images/user.png" alt="Profile pic"  />
+          <img width={width} className="profileImgg" src={profile} alt="Profile pic"  />
         </div>
     </>
   )

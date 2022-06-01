@@ -48,8 +48,8 @@ export const Space = () => {
                   <div className="d-flex justify-content-between">
                     <p>@{data.username}</p>
                     {/* <Link to={`/message/${data._id}`}> */}
-                    <button onClick={() => setCurrentUser(data)} className=' hidden btn text-white ms-2 ps-2 fw-bold pe-2 p-0'>set</button>
-                    <button  onClick={createChat} className='btn text-white ms-2 ps-2 fw-bold pe-2 p-0'>Chat</button>
+                    {/* <button onClick={() => setCurrentUser(data)} className=' hidden btn text-white ms-2 ps-2 fw-bold pe-2 p-0'>set</button> */}
+                    <button  onClick={createChat} className='btn text-white ms-2 ps-2 fw-bold pe-2 p-0'>Profile</button>
 
                     {/* </Link> */}
                   </div>

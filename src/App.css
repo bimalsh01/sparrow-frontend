@@ -11,7 +11,7 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     /* background-image: linear-gradient(147deg, #00042c 0%, #04619f 74%); */
     background: linear-gradient(127.43deg, #535A00 0%, #DDFBFF 100%), radial-gradient(111.5% 111.5% at 83.93% 106%, #CC00FF 0%, #00239F 100%), radial-gradient(111% 111% at 74.29% -11%, #A90000 0%, #027000 100%), linear-gradient(127.43deg, #B7D500 0%, #2200AA 100%);
-background-blend-mode: overlay, difference, difference, normal;
+    background-blend-mode: overlay, difference, difference, normal;
     background-repeat: no-repeat;
     background-attachment: fixed;
 

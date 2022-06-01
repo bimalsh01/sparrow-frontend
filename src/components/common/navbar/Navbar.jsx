@@ -13,7 +13,7 @@ import { Search } from "../search/Search";
 const Navbar = () => {
   const [imageValue, setImagesValue] = useState("")
   const [questionValue, setQuestionValue] = useState("")
-  const { isAuth, user, } = useSelector((state) => state.Auth)
+  const { profile } = useSelector((state) => state.Auth.user)
 
 
   const dispatch = useDispatch();
@@ -82,26 +82,20 @@ const Navbar = () => {
             </ul>
             <ul>
               <div className="d-flex align-items-center mt-3">
-                <Link to={"/profile"}>
-                  <button
-                    type="button"
-                    class="btn btn-outline-white me-2"
-                    data-mdb-ripple-color="dark"
-                  >
-                    <span>
-                      <i class="fa-solid fa-user"></i>
-                    </span>
-                  </button>
-                </Link>
-                <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-primary me-3">
-                  Ask Question
+                
+                <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-danger me-3">
+                  ASK 
                 </button>
+                {/* <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" class="fa-solid fa-circle-plus fs-2"></i> */}
+
+                <Link className="me-2" to={"/profile"}>
+                <Avatar width={"39px"} />
+                </Link>
 
 
-
-                {
+                {/* {
                   isAuth && <button onClick={Clicked} type="button" className="btn btn-primary me-3"><i class="fa-solid fa-sign-out"></i></button>
-                }
+                } */}
 
               </div>
             </ul>

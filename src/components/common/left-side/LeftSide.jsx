@@ -5,13 +5,13 @@ import './LeftSide.css';
 
 const LeftSide = () => {
   const {fname,lname,username} = useSelector(state => state.Auth.user);
-  const {isAuth} = useSelector(state => state.Auth);
+  const {profile} = useSelector(state => state.Auth.user);
 
   return (
     <>
         <Link to={"/profile"}>
             <div className="mainProfile">
-              <img className="profile_img" src="/images/user.png" alt="Profile pic" width="35%" />
+              <img className="profile_img" src={profile} alt="Profile pic" width="35%" />
               <div className="name">
                 <h5>{fname} {lname}</h5>
                 <span class="badge bg-primary">@{username}</span>
