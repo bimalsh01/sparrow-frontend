@@ -3,11 +3,14 @@ import { useSelector } from 'react-redux'
 import "././Avatar.css"
 
 const Avatar = ({width}) => {
-    const {profile} = useSelector(state => state.Auth.user)
+    const auth = useSelector(state => state.Auth)
+    // const {profile} = useSelector(state => state.Auth.user)
   return (
     <>
         <div>
-          <img width={width} className="profileImgg" src={profile} alt="Profile pic"  />
+          {
+            auth.isAuth ? <img width={width} className="profileImgg" src={auth.user.profile} alt="Profile pic"  /> : <div></div>
+          }
         </div>
     </>
   )

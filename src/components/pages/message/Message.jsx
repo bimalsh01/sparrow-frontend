@@ -165,10 +165,16 @@ const Message = () => {
                                                     </>
 
                                                     :
+                                                    <>
                                                     <div>
+                                                        <div className='text-center mt-5'>
                                                         <img src="/images/message.png" alt="" width={"30%"} />
-                                                        <span className='text-center'>No conversation found!</span>
+                                                        <h5 className='text-center'>Select a chat to get started</h5>
                                                     </div>
+                                                    
+
+                                                    </div>
+                                                    </>
                                                     
                                             }
                                             <div ref={messagesEndRef} />

@@ -59,9 +59,6 @@ const OtherUser = () => {
     const createChat = (user) => {
         createConversation({ senderId: id, receiverId: _id }).then(res => {
             console.log("Got it", res);
-            // navigate to page message url
-            // navigate(`/message`);
-            
         });
     }
 

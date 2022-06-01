@@ -16,6 +16,7 @@ const Article = () => {
     useEffect(() => {
         getQuestions().then(res => {
             setData(res.data.questions)
+            console.log(res.data.questions, "data")
         })
     }, [])
 
@@ -42,7 +43,7 @@ const Article = () => {
                     return (
                         <div className='ArticleCard mb-3'>
                             <div className="post__info">
-                                <Avatar width={"30px"} />
+                                <img className='profileImgg' src={data.postedBy.profile} alt="profile" width={"40px"} />
                                 <h5 className='mt-1'>@{data.postedBy.username}</h5>
                                 <small>posted on {data.createdAt}</small>
                             </div>

@@ -13,7 +13,7 @@ import { Search } from "../search/Search";
 const Navbar = () => {
   const [imageValue, setImagesValue] = useState("")
   const [questionValue, setQuestionValue] = useState("")
-  const { profile } = useSelector((state) => state.Auth.user)
+  const { isAuth } = useSelector(state => state.Auth)
 
 
   const dispatch = useDispatch();
@@ -82,20 +82,28 @@ const Navbar = () => {
             </ul>
             <ul>
               <div className="d-flex align-items-center mt-3">
-                
+
                 <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-danger me-3">
-                  ASK 
+                  ASK
                 </button>
                 {/* <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" class="fa-solid fa-circle-plus fs-2"></i> */}
 
-                <Link className="me-2" to={"/profile"}>
-                <Avatar width={"39px"} />
-                </Link>
+                {/* <Link className="me-2" to={"/profile"}>
+                  <Avatar width={"39px"} />
+                </Link> */}
 
 
-                {/* {
-                  isAuth && <button onClick={Clicked} type="button" className="btn btn-primary me-3"><i class="fa-solid fa-sign-out"></i></button>
-                } */}
+                {
+                  isAuth ?<>
+                    <Link className="me-2" to={"/profile"}>
+                      <Avatar width={"39px"} />
+                    </Link>
+                  </>
+                    :
+                    <Link to={'/login'}>
+                    <button className="btn"><i class="fa-solid fa-right-to-bracket"></i></button>
+                    </Link>
+                }
 
               </div>
             </ul>
