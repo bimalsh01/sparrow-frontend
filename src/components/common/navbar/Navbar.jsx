@@ -138,6 +138,7 @@ const Navbar = () => {
 
                   <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark"><i class="fa-solid fa-camera"></i> Camera</button>
 
+                
                 </div>
                 {
                   imageValue !== "" && <img className="mt-2 img-fluid bdr-15" src={imageValue} width={"150px"} alt="QuestionImage" />

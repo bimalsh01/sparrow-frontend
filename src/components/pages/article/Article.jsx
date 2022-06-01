@@ -12,6 +12,7 @@ import ReactHtmlParser from 'html-react-parser';
 const Article = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([])
+    
 
     useEffect(() => {
         getQuestions().then(res => {
@@ -62,10 +63,12 @@ const Article = () => {
                                             :
                                             <p>{ReactHtmlParser(answerData.text)}</p>
                                         }
-                                        <img src="/images/answer.jpg" alt="" width={"100%"} />
                                     </div>
                                 )
                             })}
+                            {
+                                data.questionImage ? <img className='qnaImage' src={data.questionImage} alt="" width={"100%"} /> : <div></div>
+                            }
 
                             <div className="post__footer d-flex justify-content-between mt-3">
                                 <div className="post_footerAction">
@@ -84,7 +87,7 @@ const Article = () => {
                 })
             }
 
-            <Modal classNames={"answerModel"}
+            {/* <Modal classNames={"answerModel"}
                 center closeOnEsc open={isModalOpen}
             >
                 <div className="modal__question">
@@ -99,7 +102,7 @@ const Article = () => {
                     <button onClick={() => setIsModalOpen(false)} className='btn btn-danger w-100'>Close</button>
                     <button className='btn btn-primary ms-1 w-100'>Add Answer</button>
                 </div>
-            </Modal>
+            </Modal> */}
 
         </>
     )
