@@ -6,8 +6,10 @@ import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { getOneQuestion, postAnswer } from '../../../http/Index';
 import { useDispatch, useSelector } from 'react-redux';
-import {setQsn} from "../../../store/Slice"
+import { setQsn } from "../../../store/Slice"
 import HTMLReactParser from 'html-react-parser';
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
 
@@ -18,6 +20,11 @@ const QnaPage = () => {
     let [data, setData] = useState([]);
     const dispatch = useDispatch();
     const qsn = useSelector(state => state.Auth.qsn);
+
+    // editorState
+    const [editorState, setEditorState] = useState('');
+
+    
 
     useEffect(() => {
         try {
@@ -31,7 +38,7 @@ const QnaPage = () => {
             console.log(error, "here");
         }
     }, [])
-    console.log(data,"data");
+    console.log(data, "data");
 
     const handleQuill = (value) => {
         setAnswer(value);
@@ -42,12 +49,12 @@ const QnaPage = () => {
             .then(result => {
 
                 const newData = data.map(item => {
-                    if(item._id === _id){
+                    if (item._id === _id) {
                         return result
                     }
                     return item;
                 })
-                
+
                 setData(newData);
 
             }).catch(err => {
@@ -89,14 +96,21 @@ const QnaPage = () => {
                                             {HTMLReactParser(data.text)}
                                         </p>
                                         <img src="/images/answer.jpg" alt="" width={"100%"} />
-                                        
+
                                     </div>
                                 )
                             })
                         }
 
                         <h4 className='fw-bold mt-3'>Add your answers</h4>
-                        <ReactQuill onChange={handleQuill} placeholder='Enter your thoughts' />
+                        {/* <ReactQuill onChange={handleQuill} placeholder='Enter your thoughts' /> */}
+                        <Editor
+                            editorState={editorState}
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onEditorStateChange={setEditorState}
+                        />;
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
                 </div>
