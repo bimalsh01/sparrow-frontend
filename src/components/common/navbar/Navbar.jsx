@@ -53,6 +53,10 @@ const Navbar = () => {
     }
   }
 
+  const snackBar = () => {
+    dispatch(setSnackbar(true, "success", "success", "Snackbar is open"));
+  }
+
   return (
     <>
       <nav className="container navbar navbar-expand-lg navbar-light sticky-top justify-content-around ">
@@ -86,10 +90,11 @@ const Navbar = () => {
                 <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-danger me-3">
                   ASK
                 </button>
+                
                 {/* <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" class="fa-solid fa-circle-plus fs-2"></i> */}
 
-                {/* <Link className="me-2" to={"/profile"}>
-                  <Avatar width={"39px"} />
+                {/* <Link className="me-2" to={"/admin"}>
+                  <button>Adm</button>
                 </Link> */}
 
 

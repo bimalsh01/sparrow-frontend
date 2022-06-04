@@ -14,6 +14,7 @@ import QnaPage from './components/pages/qnaPage/QnaPage';
 import Main from './components/pages/main/Main';
 import OtherUser from './components/pages/otherUser/OtherUser';
 import Message from './components/pages/message/Message';
+import Admin from './components/pages/admin/Admin';
 
 // const isAuth = true;
 // const user = {
@@ -48,8 +49,10 @@ function App() {
             <Route path='/qnapage/:id' exact element={<QnaPage/>}/>
             <Route path='/user/:id' exact element={<OtherUser/>}/>
             <Route path='/message' exace element={<Message/>} />
-
+      
           </Route>
+
+          <Route path='/admin' exact element={<Admin/>} />
 
         </Routes>
       </Router>

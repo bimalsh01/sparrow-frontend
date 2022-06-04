@@ -14,6 +14,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
 
+
 const QnaPage = () => {
     const { id: _id } = useParams();
     const [answer, setAnswer] = useState('');
@@ -64,6 +65,7 @@ const QnaPage = () => {
         console.log(data, "data");
 
     }
+    console.log(answer,"ans")
 
 
     return (
@@ -103,14 +105,16 @@ const QnaPage = () => {
                         }
 
                         <h4 className='fw-bold mt-3'>Add your answers</h4>
-                        {/* <ReactQuill onChange={handleQuill} placeholder='Enter your thoughts' /> */}
-                        <Editor
-                            editorState={editorState}
+                        <ReactQuill theme="snow" className="editor text-white"  onChange={handleQuill} placeholder='Enter your thoughts' />
+                        
+                        {/* <Editor className="editor"
+                        onChange={handleQuill}
+                            
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
                             editorClassName="editorClassName"
-                            onEditorStateChange={setEditorState}
-                        />;
+                           
+                        /> */}
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
                 </div>

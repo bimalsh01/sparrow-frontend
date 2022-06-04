@@ -19,7 +19,7 @@ const SnackBar = () => {
   const [state, setState] = useState({
     open: false,
     vertical: 'bottom',
-    horizontal: 'center',
+    horizontal: 'right',
   });
   const { vertical, horizontal } = state;
 
@@ -44,7 +44,7 @@ const SnackBar = () => {
         onClose={handleClose}
       >
         <Alert
-          elevation={6}
+          
           variant="filled"
           severity={snackbarSeverity}
           onClose={handleClose}
