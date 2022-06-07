@@ -33,6 +33,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          
           <Route element={<GuestRoute />}>
             <Route path="/" exact element={<Main />} />
             <Route path="/login" element={<Login />} />

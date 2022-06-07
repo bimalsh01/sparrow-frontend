@@ -21,6 +21,7 @@ const Authenticate = () => {
     const {data} = await sendOtp({phone:phoneNumber});
     console.log(data);
     dispatch(setOtp({phone: data.phone,hash:data.hash}));
+    dispatch(setSnackbar(true, "success", "success", "OTP has been sent!"));
   }
 
   async function Verify(e){
