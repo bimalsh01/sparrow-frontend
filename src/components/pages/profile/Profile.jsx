@@ -21,8 +21,8 @@ export const Profile = () => {
   const [firstname, setFirstname] = useState(fname);
   const [lastname, setLastname] = useState(lname);
   const [secemail, setSecemail] = useState(secondaryEmail);
-  const [adstate, setAdstate] = useState(address[0].state);
-  const [city, setCity] = useState(address[0].state);
+  const [adstate, setAdstate] = useState('');
+  const [city, setCity] = useState('');
   const dispatch = useDispatch();
 
   const toggleTab = (index) => {

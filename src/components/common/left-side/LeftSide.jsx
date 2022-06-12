@@ -20,13 +20,17 @@ const LeftSide = () => {
           </Link>
           <div className="mt-4 flex-column">
 
-            <h5 className='fw-bold mb-3'><img className='me-1' src="/images/home.png" alt="" width={"15%"} />Homepage</h5>
-            <Link to={'/message'}>
-            <h5 className='fw-bold ms-1 mb-3'><img className='me-1' src="/images/mail.png" alt="" width={"12%"} /> Messages</h5>
+            <Link to={'/dashboard'}>
+            <h5 className=' mb-3'><img className='me-1' src="/images/home.png" alt="" width={"12%"} />Homepage</h5>
+
             </Link>
 
-            <h5 className='fw-bold ms-1 mb-3'><img className='me-2' src="/images/qsns.png" alt="" width={"12%"} />Unanswered</h5>
-            <h5 className='fw-bold ms-1'><img className='me-2' src="/images/bookmark.png" alt="" width={"13%"} />Homepage</h5>
+            <Link to={'/message'}>
+            <h5 className='ms-1 mb-3'><img className='me-1' src="/images/mail.png" alt="" width={"10%"} /> Messages</h5>
+            </Link>
+
+            <h5 className='ms-1 mb-3 fw-bold'><img className='me-2' src="/images/qsns.png" alt="" width={"10%"} />Search</h5>
+            <h5 className='ms-1'><img className='me-2' src="/images/bookmark.png" alt="" width={"11%"} />Favourite</h5>
           </div>
 
           <div className="spaceSection">

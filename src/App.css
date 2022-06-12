@@ -98,3 +98,17 @@ button{
 .a12{
     
 }
+
+ /* glassmorpism .questionCard */
+.questionCard{
+    
+    background-color: rgba(0, 0, 0, 0.208);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}

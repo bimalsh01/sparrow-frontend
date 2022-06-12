@@ -7,7 +7,7 @@ import Card from '../../../common/card/Card'
 import Loader from '../../../common/loader/Loader';
 
 const Activate = () => {
-  const {username, password} = useSelector((state) => state.Auth.user);
+  const {id} = useSelector((state) => state.Auth.user);
   const {phone} = useSelector(state => state.Auth.user);
   const dispatch = useDispatch();
   const [usernameValue,setUsernameValue] = useState("");
@@ -31,7 +31,7 @@ const Activate = () => {
     setLoading(true);
     
     try {
-      const {data} = await activate({username:usernameValue,password:confPass});
+      const {data} = await activate({username:usernameValue,password:confPass,userId:id});
       console.log(data);
       if(data.Auth){
         dispatch(setAuth(data))

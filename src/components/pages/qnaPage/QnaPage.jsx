@@ -106,15 +106,6 @@ const QnaPage = () => {
 
                         <h4 className='fw-bold mt-3'>Add your answers</h4>
                         <ReactQuill theme="snow" className="editor text-white"  onChange={handleQuill} placeholder='Enter your thoughts' />
-                        
-                        {/* <Editor className="editor"
-                        onChange={handleQuill}
-                            
-                            toolbarClassName="toolbarClassName"
-                            wrapperClassName="wrapperClassName"
-                            editorClassName="editorClassName"
-                           
-                        /> */}
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
                 </div>

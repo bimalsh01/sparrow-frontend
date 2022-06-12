@@ -15,6 +15,7 @@ import Main from './components/pages/main/Main';
 import OtherUser from './components/pages/otherUser/OtherUser';
 import Message from './components/pages/message/Message';
 import Admin from './components/pages/admin/Admin';
+import SearchResult from './components/pages/searchResult/SearchResult';
 
 // const isAuth = true;
 // const user = {
@@ -50,6 +51,8 @@ function App() {
             <Route path='/qnapage/:id' exact element={<QnaPage/>}/>
             <Route path='/user/:id' exact element={<OtherUser/>}/>
             <Route path='/message' exace element={<Message/>} />
+            <Route path='/search' exace element={<SearchResult/>} />
+
       
           </Route>
 
