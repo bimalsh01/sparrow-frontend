@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { QsnSearch } from '../../../http/Index';
 import LeftSide from '../../common/left-side/LeftSide'
 import { Space } from '../space/Space'
+import { Link } from 'react-router-dom';
 
 const SearchResult = () => {
+  const [search, setSearch] = useState('');
+  const [qsn, setQsn] = useState('');
+  console.log(qsn);
+
+  const handleSearch = async (e) => {
+    QsnSearch({ questionName: search }).then(res => setQsn(res.data.questions))
+  }
   return (
     <>
       <div class="main-section container">
@@ -11,55 +20,52 @@ const SearchResult = () => {
         </div>
         <div class="middle-side">
           <div className="contents">
-            <h5> Search results for 'hello'</h5>
-            <hr />
-            {/* display all the questions */}
-            <div className="ms-1 mt-2">
-              <div className='questionCard'>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta dignissimos soluta voluptates dolore tempore aliquid saepe aperiam, quisquam quaerat nesciunt doloremque quod explicabo porro sint, beatae reiciendis! Perspiciatis, perferendis? Corporis?
-                </p>
-                <h6 className='mt-2 fw-bold'>
-                  Asked by <u>John Doe</u> on <u>12/12/2019</u>
-                </h6>
-              </div>
-              
-            </div>
-            <div className="ms-1 mt-2">
-              <div className='questionCard'>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta dignissimos soluta voluptates dolore tempore aliquid saepe aperiam, quisquam quaerat nesciunt doloremque quod explicabo porro sint, beatae reiciendis! Perspiciatis, perferendis? Corporis?
-                </p>
-                <h6 className='mt-2 fw-bold'>
-                  Asked by <u>John Doe</u> on <u>12/12/2019</u>
-                </h6>
-              </div>
-              
-            </div>
-            <div className="ms-1 mt-2">
-              <div className='questionCard'>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta dignissimos soluta voluptates dolore tempore aliquid saepe aperiam, quisquam quaerat nesciunt doloremque quod explicabo porro sint, beatae reiciendis! Perspiciatis, perferendis? Corporis?
-                </p>
-                <h6 className='mt-2 fw-bold'>
-                  Asked by <u>John Doe</u> on <u>12/12/2019</u>
-                </h6>
-              </div>
-              
-            </div>
 
-            <div className="ms-1 mt-2">
-              <div className='questionCard'>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta dignissimos soluta voluptates dolore tempore aliquid saepe aperiam, quisquam quaerat nesciunt doloremque quod explicabo porro sint, beatae reiciendis! Perspiciatis, perferendis? Corporis?
-                </p>
-                <h6 className='mt-2 fw-bold'>
-                  Asked by <u>John Doe</u> on <u>12/12/2019</u>
-                </h6>
-              </div>
-              
+            <div className="search">
+              <i class=" fa-solid fs-5 fa-magnifying-glass"></i>
+              <form action="" onChange={handleSearch}>
+                <input
+                  onChange={(e) => setSearch(e.target.value.toLowerCase().replace(/ /g, ''))}
+                  type="text"
+                  placeholder="Search any questions ..."
+                  className="searchInput"
+                />
+              </form>
             </div>
-            
+            {
+              qsn == "" ? null :
+              <p className='m-2'>Search result for '{search}'</p>
+            }
+
+
+            <hr />
+           
+
+            {
+              qsn == "" ? null :
+                <div>
+                  {
+                    qsn.map(qsn => (
+                      <div className="ms-1 mt-2">
+
+                      
+                      <div className='questionCard'>
+                        <Link to={`/qnapage/${qsn._id}}`}>
+                        <p>
+                          {qsn.questionName}
+                        </p>
+                        </Link>
+                        <h6 className='mt-2 fw-bold'>
+                          Asked by {qsn.postedBy.fname} on {qsn.createdAt}
+                        </h6>
+                      </div>
+                      </div>
+                    ))
+
+                  }
+                </div>
+            }
+
 
 
           </div>

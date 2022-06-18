@@ -1,24 +1,29 @@
 import axios from 'axios';
 
+const token = localStorage.getItem('accessToken');
+console.log(localStorage.getItem('token'));
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     withCredentials: true,
     headers:{
+        
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        
     }
 });
 
 
 // LIst of endpoint
-export const sendOtp = (data) => api.post('/api/send-otp',data);
-export const verifyOtp = (data) => api.post('/api/verify-otp', data);
-export const activate = (data) => api.post('/api/activate', data);
+export const sendOtp = (data) => api.post('/api/send-otp',data, );
+export const verifyOtp = (data) => api.post('/api/verify-otp',data);
+export const activate = (data) => api.post('/api/activate', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const login = (data) => api.post('/api/login', data);
 export const logout = () => api.post('/api/logout');
 export const updateProfile = (data) => api.post('/api/update-profile', data);
 export const questions = (data) => api.post('/api/questions', data);
 export const NavSearch = (data) => api.post('/api/search', data);
+export const QsnSearch = (data) => api.post('/api/search-qsn', data);
 export const getQuestions = () => api.get('/api/allpost');
 export const getOneQuestion = (questionId) => api.get(`/api/qnapage/${questionId}`);
 export const postAnswer = (data) => api.post('/api/answer', data);

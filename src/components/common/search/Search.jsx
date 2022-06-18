@@ -21,7 +21,7 @@ export const Search = () => {
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase().replace(/ /g, ''))}
                             type="text"
-                            placeholder="Search any questions..."
+                            placeholder="Search by username ..."
                             className="searchInput"
                         />
                     </form>

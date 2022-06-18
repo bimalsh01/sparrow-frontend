@@ -30,7 +30,8 @@ const Authenticate = () => {
       return;
     }
     try {
-      const {data} = await verifyOtp({userOtp,phone,hash});
+      const {data} = await verifyOtp({phone:phone,hash:hash,userOtp:userOtp})
+      localStorage.setItem("accessToken",data.accessToken);
       dispatch(setAuth(data), setSnackbar(true, "success", "OTP verified successfully"));
       // dispatch(setSnackbar(true, "success","success", "Your number has been verified, please activate your account"));
     } catch (error) {
