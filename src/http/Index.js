@@ -21,7 +21,7 @@ export const activate = (data) => api.post('/api/activate', data, {headers:{'Aut
 export const login = (data) => api.post('/api/login', data);
 export const logout = () => api.post('/api/logout');
 export const updateProfile = (data) => api.post('/api/update-profile', data);
-export const questions = (data) => api.post('/api/questions', data);
+export const questions = (data) => api.post('/api/questions', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const NavSearch = (data) => api.post('/api/search', data);
 export const QsnSearch = (data) => api.post('/api/search-qsn', data);
 export const getQuestions = () => api.get('/api/allpost');
