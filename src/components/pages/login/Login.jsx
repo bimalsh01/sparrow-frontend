@@ -15,6 +15,19 @@ const Login = () => {
   async function loginClick(e) {
     e.preventDefault();
     const { data } = await login({ phone, password });
+    console.log(data);
+
+    if (data.status === 404) {
+      dispatch(setSnackbar(true, "error", "error", "User not found!"));
+  
+      }
+
+    // is json return is 401 then show error
+    if (data.status === 401) {
+    dispatch(setSnackbar(true, "error", "error", "Password is incorrect"));
+
+    }
+
     dispatch(setAuth(data));
     dispatch(setSnackbar(true, "success", "success", "Login Successful"));
   }

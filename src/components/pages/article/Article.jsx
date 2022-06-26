@@ -16,8 +16,8 @@ const Article = () => {
 
     useEffect(() => {
         getQuestions().then(res => {
-            setData(res.data.questions)
-            console.log(res.data.questions, "data")
+            setData(res.data.data)
+            console.log(res.data.data, "data")
         })
     }, [])
 

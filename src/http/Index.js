@@ -21,20 +21,22 @@ export const activate = (data) => api.post('/api/activate', data, {headers:{'Aut
 export const login = (data) => api.post('/api/login', data);
 export const logout = () => api.post('/api/logout');
 export const updateProfile = (data) => api.post('/api/update-profile', data);
+export const updatePassword = (data) => api.post('/api/update-password', data);
 export const questions = (data) => api.post('/api/questions', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const NavSearch = (data) => api.post('/api/search', data);
 export const QsnSearch = (data) => api.post('/api/search-qsn', data);
 export const getQuestions = () => api.get('/api/allpost');
 export const getOneQuestion = (questionId) => api.get(`/api/qnapage/${questionId}`);
-export const postAnswer = (data) => api.post('/api/answer', data);
+export const postAnswer = (data) => api.post('/api/answer', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const getAnswers = (questionId) => api.get(`/api/get-answers/${questionId}`);
 export const like = (data) => api.put('/api/like', data);
 export const unlike = (data) => api.put('/api/unlike', data);
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
-export const follow = (data) => api.put('/api/follow', data);
-export const unfollow = (data) => api.put('/api/unfollow', data);
-
+export const follow = (data) => api.put('/api/follow', data, {headers:{'Authorization': `Bearer ${token}`}});
+export const unfollow = (data) => api.put('/api/unfollow', data, {headers:{'Authorization': `Bearer ${token}`}});
+// get all followers
+export const getAllFollow = (userId) => api.get(`/api/allfollow/${userId}`);
 export const getConversations = (userId) => api.get(`/api/chat/conversation/${userId}`);
 export const getMessages = (conversationId) => api.get(`/api/chat/messages/${conversationId}`);
 export const sendMessage = (data) => api.post('/api/chat/send-message', data);

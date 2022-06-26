@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllQuestionsByUser, getUser, updateProfile } from '../../../http/Index';
+import { getAllFollow, getAllQuestionsByUser, getUser, updatePassword, updateProfile } from '../../../http/Index';
 import { setSnackbar } from '../../../store/SnackBar';
 import { Link } from 'react-router-dom';
 import { setProfile } from '../../../store/Slice';
 
 
 export const Profile = () => {
-  const [followerslength,setfollowerslength] = useState(null);
-  const [followinglength,setfollowinglength] = useState(null);
+  const [followerslength, setfollowerslength] = useState(null);
+  const [followinglength, setfollowinglength] = useState(null);
 
-  const { id, fname,secondaryEmail, lname,profile, username,  followers, following, phone, address } = useSelector(state => state.Auth.user);
-  const {profile_upload} = useSelector(state => state.Auth);
+  const { id, fname, secondaryEmail, lname, profile, username, followers, following, phone, address } = useSelector(state => state.Auth.user);
+  const { profile_upload } = useSelector(state => state.Auth);
 
   const [toggleState, setToggleState] = React.useState(1);
   const [image, setImage] = useState("");
   let [data, setData] = useState([]);
+  let [proFollowers, setProFollowers] = useState([]);
+  let [proFollowings, setProFollowings] = useState([]);
 
+  // for profile update
   const [firstname, setFirstname] = useState(fname);
   const [lastname, setLastname] = useState(lname);
   const [secemail, setSecemail] = useState(secondaryEmail);
   const [adstate, setAdstate] = useState('');
   const [city, setCity] = useState('');
   const dispatch = useDispatch();
+
+  // for updating password
+  const [oldpassword, setOldpassword] = useState('');
+  const [newpassword, setNewpassword] = useState('');
+  const [confirmpassword, setConfirmpassword] = useState('');
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -49,33 +57,60 @@ export const Profile = () => {
     })
   }, [])
 
+
+  // get all followers and following
+  useEffect(() => {
+    getAllFollow(id).then(res => {
+      setProFollowers(res.data.followers);
+      setProFollowings(res.data.followings);
+    })
+  }, [])
+
+  console.log(proFollowings, "proFollowers");
+
   useEffect(() => {
     getUser(id).then(res => {
       setfollowerslength(res.data.user.followers.length);
       setfollowinglength(res.data.user.followings.length);
-  })
-  },[])
+    })
+  }, [])
 
-  console.log(data, "data");
- 
 
   async function UpdateInfo(e) {
     e.preventDefault();
-    console.log("Hello");
     if (!id || !firstname || !lastname || !secemail || !adstate || !city) {
       dispatch(setSnackbar(true, "error", "error", "Please fill up all the fields!"));
       return;
     }
-
     try {
       const { data } = await updateProfile({ id: id, fname: firstname, lname: lastname, secondaryEmail: secemail, state: adstate, city: city, profile: profile_upload });
-      console.log(data);
       dispatch(setSnackbar(true, "success", "success", "Updated"));
 
     } catch (error) {
       console.log(error);
     }
+  }
 
+  async function UpdatePassword(e) {
+    e.preventDefault();
+    if (!id || !oldpassword || !newpassword || !confirmpassword) {
+      dispatch(setSnackbar(true, "error", "error", "Please fill up all the fields!"));
+      return;
+    }
+
+    // check password and confirm password
+    if (newpassword !== confirmpassword) {
+      dispatch(setSnackbar(true, "error", "error", "Password and confirm password does not match!"));
+      return;
+    }
+
+    try {
+      const { data } = await updatePassword({ id: id, oldPassword: oldpassword, newPassword: newpassword });
+      dispatch(setSnackbar(true, "success", "success", "Updated"));
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -87,9 +122,7 @@ export const Profile = () => {
           </div>
           <div className="name">
             <h2>{fname} {lname}</h2>
-            {/* <h2>Bimal Shrestha</h2> */}
             <span class="badge bg-primary">@{username}</span>
-            {/* <span class="badge bg-primary">@bimals</span> */}
 
             <div className='mt-2 d-flex '>
               <p>{followerslength} Followers</p>
@@ -108,21 +141,25 @@ export const Profile = () => {
 
                 <h5>Bronze tier</h5>
                 <h1 className='badge bg-success'>{phone} | Verified</h1>
-                <h4>Exp. 38</h4>
+
+                {
+                  data.length < 5 ? <h4>Exp. 10</h4> : <h4>Exp. 21</h4>
+                }
+
               </div>
 
             </div>
           </div>
           <div className='d-flex align-items-center me-5'>
             <div className='me-4'>
-              <img src="/images/qsn.png" alt="" width={"100%"} />
-              <p>Answers</p>
-              <h4 className='fw-bold'>100+</h4>
+              <img src="/images/qsn.png" alt="" width={"80%"} />
+              <p>Questions</p>
+              <h4 className='fw-bold'>{data.length}</h4>
             </div>
             <div>
               <img src="/images/ans.png" alt="" width={"100%"} />
               <p>Answers</p>
-              <h4 className='fw-bold'>1M+</h4>
+              <h4 className='fw-bold'>{data.length}</h4>
             </div>
 
           </div>
@@ -153,22 +190,22 @@ export const Profile = () => {
               <h4 className='fw-bold'>Your questions</h4>
 
               <div className="scroller">
-              {
-                  data.map( item =>{
-                    return(
+                {
+                  data.map(item => {
+                    return (
                       <div>
-                      
-                      <Link to={`/qnapage/${item._id}`}>
-                      <p className='mt-3'>{item.questionName}</p>
-                                </Link>
-                      <p className='fw-bold'>Asken on {item.createdAt}</p>
-                    </div>
+
+                        <Link to={`/qnapage/${item._id}`}>
+                          <p className='mt-3'>{item.questionName}</p>
+                        </Link>
+                        <p className='fw-bold'>Asken on {item.createdAt}</p>
+                      </div>
                     )
                   })
                 }
                 <hr className='mt-2' />
 
-                
+
               </div>
             </div>
           </div>
@@ -272,8 +309,9 @@ export const Profile = () => {
               <h5 className='fw-bold'>Change your password</h5>
               <div class="form-floating mb-3 mt-3 w-50">
                 <input
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  type={'password'}
+                  value={oldpassword}
+                  onChange={(e) => setOldpassword(e.target.value)}
                   class="form-control bg-transparent text-white"
                   id="floatingInput"
                 />
@@ -281,8 +319,10 @@ export const Profile = () => {
               </div>
               <div class="form-floating mb-3 mt-3 w-50">
                 <input
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  type={'password'}
+
+                  value={newpassword}
+                  onChange={(e) => setNewpassword(e.target.value)}
                   class="form-control bg-transparent text-white"
                   id="floatingInput"
                 />
@@ -290,14 +330,16 @@ export const Profile = () => {
               </div>
               <div class="form-floating mb-3 mt-3 w-50">
                 <input
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  type={'password'}
+                  value={confirmpassword}
+                  onChange={(e) => setConfirmpassword(e.target.value)}
                   class="form-control bg-transparent text-white"
                   id="floatingInput"
                 />
                 <label for="floatingInput">Confirm password</label>
               </div>
-              <button className='btn btn-primary w-50 shadow-0 btn-lg'>Change password</button>
+              <p className='mb-2'>Double check the information before submitting!</p>
+              <button onClick={UpdatePassword} className='btn btn-primary w-50 shadow-0 btn-lg'>Change password</button>
             </div>
 
           </div>
@@ -307,101 +349,60 @@ export const Profile = () => {
                 <h5 className='fw-bold'>Followers</h5>
                 <hr />
                 <div className="scroller">
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
+                  {
+                    proFollowers.map(item => {
+                      return (
+                        <>
+                        <Link to={`/user/${item.id}`}>
+                        <div className='d-flex pt-3 pb-3'>
+                            <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
+                            <div className='ms-3'>
+                              <div className="d-flex justify-content-between">
+                                <p className='me-3'>{item.fname}</p>
+                                <p><span class="badge border">view profile</span></p>
+                              </div>
+                              <p>@{item.username}</p>
+                            </div>
+                          </div>
+                          <hr />
+                        </Link>
+                          
+                        </>
+                      )
+                    })
+                  }
 
                 </div>
 
               </div>
 
               <div className="col">
-                <h5 className='fw-bold'>Followers</h5>
+                <h5 className='fw-bold'>Followings</h5>
                 <hr />
                 <div className="scroller">
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className='d-flex pt-3 pb-3'>
-                    <img className='bdr-50' src="/images/2.jpg" alt="" width={"10%"} />
-                    <div className='ms-3'>
-                      <div className="d-flex justify-content-between">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <a className='text-light' href="#">Follow</a>
-                      </div>
-                      <p>@bimals</p>
-                    </div>
-                  </div>
+                  {
+                    proFollowings.map(item => {
+                      return (
+                        <>
+                          <Link to={`/user/${item.id}`}>
+                          <div className='d-flex pt-3 pb-3'>
+                            <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
+                            <div className='ms-3'>
+                              <div className="d-flex justify-content-between">
+                                <p className='me-3'>{item.fname}</p>
+                                <p><span class="badge border">view profile</span></p>
+                              </div>
+                              <p>@{item.username}</p>
+                            </div>
+                          </div>
+                          </Link>
+                          <hr />
+                        </>
+                      )
+                    })
+                  }
+                  
+
                 </div>
               </div>
             </div>
