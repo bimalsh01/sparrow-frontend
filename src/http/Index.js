@@ -33,9 +33,10 @@ export const like = (data) => api.put('/api/like', data);
 export const unlike = (data) => api.put('/api/unlike', data);
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
-export const follow = (data) => api.put('/api/follow', data);
-export const unfollow = (data) => api.put('/api/unfollow', data);
-
+export const follow = (data) => api.put('/api/follow', data, {headers:{'Authorization': `Bearer ${token}`}});
+export const unfollow = (data) => api.put('/api/unfollow', data, {headers:{'Authorization': `Bearer ${token}`}});
+// get all followers
+export const getAllFollow = (userId) => api.get(`/api/allfollow/${userId}`);
 export const getConversations = (userId) => api.get(`/api/chat/conversation/${userId}`);
 export const getMessages = (conversationId) => api.get(`/api/chat/messages/${conversationId}`);
 export const sendMessage = (data) => api.post('/api/chat/send-message', data);
