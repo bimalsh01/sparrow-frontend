@@ -10,7 +10,7 @@ const SearchResult = () => {
   console.log(qsn);
 
   const handleSearch = async (e) => {
-    QsnSearch({ questionName: search }).then(res => setQsn(res.data.questions))
+    QsnSearch({ questionName: search }).then(res => setQsn(res.data.data))
   }
   return (
     <>

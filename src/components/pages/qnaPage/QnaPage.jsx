@@ -22,7 +22,6 @@ const QnaPage = () => {
     useEffect(() => {
         try {
             getOneQuestion(_id).then(res => {
-                // setData(res.data.question.answers);
                 setData(res.data.question.answers)
                 dispatch(setQsn(res.data.question))
             })
@@ -31,11 +30,12 @@ const QnaPage = () => {
             console.log(error, "here");
         }
     }, [])
-    console.log(data, "data");
 
     const handleQuill = (value) => {
         setAnswer(value);
     }
+
+    console.log(data, "This is data");
 
     async function handleSubmit() {
         await postAnswer({ questionId: _id, answer: answer })
@@ -50,13 +50,9 @@ const QnaPage = () => {
                 setData(newData);
 
             }).catch(err => {
-                console.log(err);
+                console.log('This is error', err);
             })
-
-        console.log(data, "data");
-
     }
-    console.log(answer,"ans")
 
 
     return (

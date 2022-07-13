@@ -31,7 +31,7 @@
 
 .SearchUser{
     position: absolute;
-    background-color: rgba(151, 161, 234, 0.4);
+    background-color: rgb(53, 60, 111);
     backdrop-filter: blur(1px);
     padding: 10px;
     border-radius: 0 0 10px 10px;
