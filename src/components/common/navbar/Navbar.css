@@ -34,3 +34,11 @@
 .imageInput{
     display: none;
 }
+
+.dropdown-menu{
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(100px);
+    border-radius: 10px;
+    border: 1px solid rgba(252, 252, 252, 0.18);
+}

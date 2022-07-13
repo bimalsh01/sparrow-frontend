@@ -20,7 +20,7 @@ export const sendOtp = (data) => api.post('/api/send-otp',data, );
 export const verifyOtp = (data) => api.post('/api/verify-otp',data);
 export const activate = (data) => api.post('/api/activate', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const login = (data) => api.post('/api/login', data);
-export const logout = () => api.post('/api/logout');2
+export const logout = () => api.post('/api/logout');
 export const updateProfile = (data) => api.post('/api/update-profile', data);
 export const updatePassword = (data) => api.post('/api/update-password', data);
 export const questions = (data) => api.post('/api/questions', data, {headers:{'Authorization': `Bearer ${token}`}});
@@ -63,7 +63,7 @@ api.interceptors.response.use((config)=>{
             return api.request(originalRequest);
 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.mssage)
         }
     }
     throw error;
