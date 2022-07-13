@@ -13,8 +13,6 @@ const OtherUser = () => {
 
     const { id } = useSelector(state => state.Auth.user);
 
-    const navigate = useNavigate();
-
 
     useEffect(() => {
         getAllQuestionsByUser(_id).then(res => {

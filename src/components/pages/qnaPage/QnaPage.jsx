@@ -11,10 +11,6 @@ import HTMLReactParser from 'html-react-parser';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-
-
-
-
 const QnaPage = () => {
     const { id: _id } = useParams();
     const [answer, setAnswer] = useState('');
@@ -22,15 +18,10 @@ const QnaPage = () => {
     const dispatch = useDispatch();
     const qsn = useSelector(state => state.Auth.qsn);
 
-    // editorState
-    const [editorState, setEditorState] = useState('');
-
-    
 
     useEffect(() => {
         try {
             getOneQuestion(_id).then(res => {
-                // setData(res.data.question.answers);
                 setData(res.data.question.answers)
                 dispatch(setQsn(res.data.question))
             })
@@ -39,16 +30,16 @@ const QnaPage = () => {
             console.log(error, "here");
         }
     }, [])
-    console.log(data, "data");
 
     const handleQuill = (value) => {
         setAnswer(value);
     }
 
+    console.log(data, "This is data");
+
     async function handleSubmit() {
         await postAnswer({ questionId: _id, answer: answer })
             .then(result => {
-
                 const newData = data.map(item => {
                     if (item._id === _id) {
                         return result
@@ -59,13 +50,9 @@ const QnaPage = () => {
                 setData(newData);
 
             }).catch(err => {
-                console.log(err);
+                console.log('This is error', err);
             })
-
-        console.log(data, "data");
-
     }
-    console.log(answer,"ans")
 
 
     return (
