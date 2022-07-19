@@ -30,7 +30,7 @@ export const getQuestions = () => api.get('/api/allpost');
 export const getOneQuestion = (questionId) => api.get(`/api/qnapage/${questionId}`);
 export const postAnswer = (data) => api.post('/api/answer', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const getAnswers = (questionId) => api.get(`/api/get-answers/${questionId}`);
-export const like = (data) => api.put('/api/like', data);
+export const like = (data) => api.put('/api/like', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const unlike = (data) => api.put('/api/unlike', data);
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
