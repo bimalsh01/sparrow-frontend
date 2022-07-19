@@ -41,11 +41,13 @@ export const getAllFollow = (userId) => api.get(`/api/allfollow/${userId}`);
 export const getConversations = (userId) => api.get(`/api/chat/conversation/${userId}`);
 export const getMessages = (conversationId) => api.get(`/api/chat/messages/${conversationId}`);
 export const sendMessage = (data) => api.post('/api/chat/send-message', data);
-
 export const getAllUsers = () => api.get('/api/users');
 
 // create conversation
 export const createConversation = (data) => api.post('/api/chat/conversation', data);
+
+// Favorite
+export const addFavourite = (data) => api.post('/api/addfav', data, {headers:{'Authorization': `Bearer ${token}`}});
 
 // Interceptors backend and frontend checking
 api.interceptors.response.use((config)=>{
