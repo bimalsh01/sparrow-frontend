@@ -48,6 +48,8 @@ export const createConversation = (data) => api.post('/api/chat/conversation', d
 
 // Favorite
 export const addFavourite = (data) => api.post('/api/addfav', data, {headers:{'Authorization': `Bearer ${token}`}});
+// get all favourite
+export const getAllFavourite = (userId) => api.get(`/api/getfav/${userId}`);
 
 // Interceptors backend and frontend checking
 api.interceptors.response.use((config)=>{
