@@ -34,6 +34,9 @@ export const like = (data) => api.put('/api/like', data, {headers:{'Authorizatio
 export const unlike = (data) => api.put('/api/unlike', data,  {headers:{'Authorization': `Bearer ${token}`}});
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
 
+// edit question
+export const editQuestion = (data) => api.post('/api/editquestion', data, {headers:{'Authorization': `Bearer ${token}`}});
+
 // delete question
 export const deleteQuestion = (questionId) => api.delete(`/api/delete-question/${questionId}`, {headers:{'Authorization': `Bearer ${token}`}});
 

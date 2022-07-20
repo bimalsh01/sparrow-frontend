@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteQuestion, getAllFollow, getAllQuestionsByUser, getUser, updatePassword, updateProfile } from '../../../http/Index';
+import { deleteQuestion, editQuestion, getAllFollow, getAllQuestionsByUser, getUser, updatePassword, updateProfile } from '../../../http/Index';
 import { setSnackbar } from '../../../store/SnackBar';
 import { Link } from 'react-router-dom';
 import { setProfile } from '../../../store/Slice';
@@ -12,7 +12,6 @@ export const Profile = () => {
   const [followerslength, setfollowerslength] = useState(null);
   const [followinglength, setfollowinglength] = useState(null);
   const [imageValue, setImagesValue] = useState("")
-
 
   const { id, fname, secondaryEmail, lname, profile, username, followers, following, phone, address } = useSelector(state => state.Auth.user);
   const { profile_upload } = useSelector(state => state.Auth);
@@ -132,9 +131,12 @@ export const Profile = () => {
   }
 
   const [qsn, setQsn] = useState({
+    questionId: "",
     questionName: '',
     questionImage: '',
   });
+  // for editing question
+  const [questionValue, setQuestionName] = useState("")
 
   const ref = useRef(null)
 
@@ -142,10 +144,39 @@ export const Profile = () => {
     console.log(currentQsn, "currentQsn");
     ref.current.click();
     setQsn({
+      questionId: currentQsn._id,
       questionName: currentQsn.questionName,
       questionImage: currentQsn.questionImage,
     });
   }
+
+  // for editing question
+  const editQsnApi = (e) => {
+    e.preventDefault();
+    if (!questionValue) {
+      dispatch(setSnackbar(true, "error", "error", "Please fill up all the fields!"));
+      return;
+    }
+    try {
+      editQuestion({ questionId: qsn.questionId, questionName: questionValue }).then(res => {
+
+        const newData = data.map(item => {
+          if (item._id === qsn.questionId) {
+            item.questionName = questionValue;  
+          }
+          return item;
+        }
+        )
+        setData(newData)
+
+        dispatch(setSnackbar(true, "success", "success", "Question Updated"));
+        
+      })
+    } catch (error) {
+      dispatch(setSnackbar(true, "error", "error", "Error"));
+    }
+  }
+
 
   const handleChangeImages = e => {
     const file = e.target.files[0];
@@ -479,7 +510,7 @@ export const Profile = () => {
             <div class="modal-body">
               <div class="form-outline">
                 <p>Enter detail description of your questions...</p>
-                <textarea value={qsn.questionName} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
+                <textarea onChange={(e) => setQuestionName(e.target.value)} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
 
               </div>
               <div className="d-flex justify-content-between">
@@ -500,7 +531,7 @@ export const Profile = () => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn text-white" data-mdb-dismiss="modal">Close</button>
-              <button type="button" class="btn text-white">Save changes</button>
+              <button type="button" onClick={editQsnApi} class="btn text-white">Save changes</button>
             </div>
           </div>
         </div>
