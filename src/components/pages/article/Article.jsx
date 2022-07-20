@@ -9,10 +9,13 @@ import { addFavourite, getQuestions, like, unlike } from '../../../http/Index';
 import { Link } from 'react-router-dom'
 import ReactHtmlParser from 'html-react-parser';
 import { useSelector } from 'react-redux';
+import LikeCount from '../../common/LikeCount';
+import { format } from 'timeago.js'
 
 const Article = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([])
+    const [likeLength, setlikeLength] = useState(null);
 
     // get id useSelector from redux
     const {id} = useSelector(state => state.Auth.user)
@@ -58,7 +61,7 @@ const Article = () => {
                             <div className="post__info">
                                 <img className='profileImgg' src={data.postedBy.profile} alt="profile" width={"40px"} />
                                 <h5 className='mt-1'>@{data.postedBy.username}</h5>
-                                <small>posted on {data.createdAt}</small>
+                                <small>posted on {format(data.createdAt)}</small>
                             </div>
                             <div className="post__body justify-content-between">
                                 <Link to={`/qnapage/${data._id}`}>
@@ -69,7 +72,7 @@ const Article = () => {
                             {data.answers.slice(0, 1).map(answerData => {
                                 return (
                                     <div className="post__answer">
-                                        <h6 className='fw-bold mt-2'>Answered by <u><a href="#"> {answerData.answeredBy} </a></u>on {answerData.answeredOn} </h6>
+                                        <h6 className='fw-bold mt-2'>Answered by <u><a href="#"> {answerData.answeredBy} </a></u>on {format(answerData.answeredOn)} </h6>
                                         {answerData.text == "" ?
                                             <p>No answer yet</p>
                                             :
@@ -84,7 +87,7 @@ const Article = () => {
 
                             <div className="post__footer d-flex justify-content-between mt-3">
                                 <div className="post_footerAction">
-                                    <button onClick={() => {likePost(data._id)}} type="button" class="btn btn-outline-light" data-mdb-ripple-color="dark">{data.likes.length} <i class="fa-solid fa-thumbs-up"></i></button>
+                                    <LikeCount data={data}/>
                                     <Link to={`/qnapage/${data._id}`}>
                                         <button type="button" class="btn ms-2 btn-outline-light" data-mdb-ripple-color="dark">Add Answer</button>
                                     </Link>

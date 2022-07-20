@@ -18,10 +18,13 @@ const QnaPage = () => {
     const dispatch = useDispatch();
     const qsn = useSelector(state => state.Auth.qsn);
 
+    console.log(qsn, "qsn");
+
 
     useEffect(() => {
         try {
             getOneQuestion(_id).then(res => {
+                console.log(res.data, "data")
                 setData(res.data.question.answers)
                 dispatch(setQsn(res.data.question))
             })
@@ -77,7 +80,7 @@ const QnaPage = () => {
                                         <div className="answer d-flex align-items-center">
                                             <img className="profile_img mt-2" src="/images/user.png" alt="Profile pic" width="8%" />
                                             <div className='ms-2'>
-                                                <p>{data.answeredBy.fname} {data.answeredBy.lname}</p>
+                                                {/* <p>{data.answeredBy.fname} {data.answeredBy.lname}</p> */}
                                                 <p className='m-0'>Answered on {data.answeredOn}</p>
                                             </div>
                                         </div>
@@ -93,6 +96,11 @@ const QnaPage = () => {
 
                         <h4 className='fw-bold mt-3'>Add your answers</h4>
                         <ReactQuill theme="snow" className="editor text-white"  onChange={handleQuill} placeholder='Enter your thoughts' />
+                        // image upload
+                        <div className="text-center">
+                            <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                        </div>
+                        
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
                 </div>
