@@ -9,7 +9,7 @@ const Conversation = ({conversation, currentUser, socket}) => {
         console.log(receiverId, "receiverId");
         try {
             getUser(receiverId).then(res => {
-                setUser(res.data.user);
+                setUser(res.data.data);
             })
         } catch (error) {
             console.log(error);

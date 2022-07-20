@@ -16,17 +16,20 @@ const OtherUser = () => {
 
     useEffect(() => {
         getAllQuestionsByUser(_id).then(res => {
-            setData(res.data);
+            console.log(res);
+            setData(res.data.data);
         })
         getUser(_id).then(res => {
-            setUser(res.data.user);
-            console.log(res.data.user, "user");
-            localStorage.setItem('followers', JSON.stringify(res.data.user.followers));
-            setfollowerslength(res.data.user.followers.length);
-            setfollowinglength(res.data.user.followings.length);
+            setUser(res.data.data[0]);
+            console.log(res.data.data[0], "user");
+            localStorage.setItem('followers', JSON.stringify(res.data.data[0].followers));
+            setfollowerslength(res.data.data[0].followers.length);
+            setfollowinglength(res.data.data[0].followings.length);
         })
 
     }, [followerslength, followinglength, followed])
+
+
 
     useEffect(() => {
         // check in local storage if user is in array of followers
@@ -40,13 +43,14 @@ const OtherUser = () => {
 
 
     function followUser() {
-        follow({ followId: _id }).then(res => {
+        console.log("following",_id);
+        follow({ followId: _id, userId:id }).then(res => {
             console.log(res.data);
             setFollowed(true);
         })
     }
     function unfollowUser() {
-        unfollow({ followId: _id }).then(res => {
+        unfollow({ followId: _id, userId:id }).then(res => {
             setFollowed(false);
 
         })
@@ -119,8 +123,6 @@ const OtherUser = () => {
                                     )
                                 })
                             }
-
-
 
                         </div>
 

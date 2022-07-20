@@ -53,7 +53,7 @@ export const Profile = () => {
 
   useEffect(() => {
     getAllQuestionsByUser(id).then(res => {
-      setData(res.data);
+      setData(res.data.data);
     })
   }, [])
 

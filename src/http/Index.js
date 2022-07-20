@@ -20,7 +20,7 @@ export const sendOtp = (data) => api.post('/api/send-otp',data, );
 export const verifyOtp = (data) => api.post('/api/verify-otp',data);
 export const activate = (data) => api.post('/api/activate', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const login = (data) => api.post('/api/login', data);
-export const logout = () => api.post('/api/logout');2
+export const logout = () => api.post('/api/logout');
 export const updateProfile = (data) => api.post('/api/update-profile', data);
 export const updatePassword = (data) => api.post('/api/update-password', data);
 export const questions = (data) => api.post('/api/questions', data, {headers:{'Authorization': `Bearer ${token}`}});
@@ -30,7 +30,7 @@ export const getQuestions = () => api.get('/api/allpost');
 export const getOneQuestion = (questionId) => api.get(`/api/qnapage/${questionId}`);
 export const postAnswer = (data) => api.post('/api/answer', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const getAnswers = (questionId) => api.get(`/api/get-answers/${questionId}`);
-export const like = (data) => api.put('/api/like', data);
+export const like = (data) => api.put('/api/like', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const unlike = (data) => api.put('/api/unlike', data);
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
@@ -63,7 +63,7 @@ api.interceptors.response.use((config)=>{
             return api.request(originalRequest);
 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.mssage)
         }
     }
     throw error;
