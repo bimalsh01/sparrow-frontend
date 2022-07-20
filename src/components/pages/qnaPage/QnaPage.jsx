@@ -17,6 +17,8 @@ const QnaPage = () => {
     let [data, setData] = useState([]);
     const dispatch = useDispatch();
     const qsn = useSelector(state => state.Auth.qsn);
+  const [imageValue, setImagesValue] = useState("")
+
 
     console.log(qsn, "qsn");
 
@@ -57,6 +59,17 @@ const QnaPage = () => {
             })
     }
 
+    const handleChangeImages = e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        console.log(reader.result, "Image result");
+    
+        reader.onloadend = function () {
+          setImagesValue(reader.result);
+        }
+      }
+
 
     return (
         <>
@@ -87,7 +100,7 @@ const QnaPage = () => {
                                         <p className='mt-3'>
                                             {HTMLReactParser(data.text)}
                                         </p>
-                                        <img src="/images/answer.jpg" alt="" width={"100%"} />
+                                        <img className='qnaImage' src="/images/answer.jpg" alt="" width={"100%"} />
 
                                     </div>
                                 )
@@ -95,12 +108,17 @@ const QnaPage = () => {
                         }
 
                         <h4 className='fw-bold mt-3'>Add your answers</h4>
-                        <ReactQuill theme="snow" className="editor text-white"  onChange={handleQuill} placeholder='Enter your thoughts' />
-                        // image upload
-                        <div className="text-center">
-                            <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                        </div>
+                        <ReactQuill theme="snow" className="editor text-white" onChange={handleQuill} placeholder='Enter your thoughts' />
+                       
+                            <button className='btn mt-2'>
                         
+                            <label htmlFor="file"><i class="fa-solid fa-camera"></i> Pick a image 'if Any have any'</label>
+                            <input type="file" name="file" id="file" className="imageInput"
+                                multiple accept="image/*,video/*" onChange={handleChangeImages} />
+                          
+                            </button>
+                       
+
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
                 </div>

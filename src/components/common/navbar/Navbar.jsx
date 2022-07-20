@@ -88,15 +88,13 @@ const Navbar = () => {
               <div className="d-flex align-items-center mt-3">
 
                 <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-danger me-3">
-                  ASK
+                  ASKed
                 </button>
 
 
                 {
                   isAuth ? <>
-                    {/* <Link className="me-2" to={"/profile"}>
-                      <Avatar width={"39px"} />
-                    </Link> */}
+  
                     <div class="dropdown ">
                       <a
                         class="dropdown-toggle d-flex align-items-center hidden-arrow"
