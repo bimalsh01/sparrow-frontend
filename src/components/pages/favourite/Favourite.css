@@ -1,0 +1,19 @@
+.favcard{
+
+    width: 250px;
+  
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: rgba(61, 114, 161, 0.381);
+   
+  }
+
+  .favcard img{
+    width: 100%;
+    height: 200px;
+    
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+  object-fit: cover;
+  }

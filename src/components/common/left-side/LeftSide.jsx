@@ -31,9 +31,10 @@ const LeftSide = () => {
 
             <Link to={'/search'}>
             <h5 className='ms-1 mb-3 fw-bold'><img className='me-2' src="/images/qsns.png" alt="" width={"10%"} />Search</h5>
-
-              </Link>
+            </Link>
+              <Link to={'/favourite'}>
             <h5 className='ms-1'><img className='me-2' src="/images/bookmark.png" alt="" width={"11%"} />Favourite</h5>
+            </Link>
           </div>
 
           <div className="spaceSection">

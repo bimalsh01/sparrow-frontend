@@ -16,18 +16,15 @@ import OtherUser from './components/pages/otherUser/OtherUser';
 import Message from './components/pages/message/Message';
 import Admin from './components/pages/admin/Admin';
 import SearchResult from './components/pages/searchResult/SearchResult';
+import Favourite from './components/pages/favourite/Favourite';
 
-// const isAuth = true;
-// const user = {
-//   activated: false,
-// }
 
 function App() {
 
   const {loading} = useLoadingHooks();
 
   return loading ? (
-    <Loader message={"we are processing your request 😊"} />
+    <Loader message={"we are processing your request 🔃"} />
   ) : (
     <>
     <SnackBar />
@@ -52,6 +49,8 @@ function App() {
             <Route path='/user/:id' exact element={<OtherUser/>}/>
             <Route path='/message' exace element={<Message/>} />
             <Route path='/search' exace element={<SearchResult/>} />
+            <Route path='/favourite' exace element={<Favourite/>} />
+
 
       
           </Route>

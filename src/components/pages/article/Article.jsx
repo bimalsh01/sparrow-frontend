@@ -5,13 +5,17 @@ import "./Article.css";
 import Modal from 'react-responsive-modal';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { getQuestions, like, unlike } from '../../../http/Index';
+import { addFavourite, getQuestions, like, unlike } from '../../../http/Index';
 import { Link } from 'react-router-dom'
 import ReactHtmlParser from 'html-react-parser';
+import { useSelector } from 'react-redux';
 
 const Article = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([])
+
+    // get id useSelector from redux
+    const {id} = useSelector(state => state.Auth.user)
     
 
     useEffect(() => {
@@ -33,6 +37,14 @@ const Article = () => {
             console.log(res, "like response");
         })
     }
+
+    // Add to favourite
+    const addToFavourite = (qid) => {
+        addFavourite({userId:id,questionId:qid}).then(res => {
+            console.log(res, "add to favourite response");
+        })
+    }
+
 
     return (
         <>
@@ -79,7 +91,7 @@ const Article = () => {
                                     <button type="button" class="btn ms-2" data-mdb-ripple-color="dark"><i class="fa-solid fa-share"></i></button>
                                 </div>
                                 <div className="rightSide">
-                                    <button type="button" class="btn ms-2 fs-6 shadow-0" data-mdb-ripple-color="dark"><i class="fa-solid fa-bookmark"></i></button>
+                                    <button onClick={() => {addToFavourite(data._id)}} type="button" class="btn ms-2 fs-6 shadow-0" data-mdb-ripple-color="dark"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
                         </div>
