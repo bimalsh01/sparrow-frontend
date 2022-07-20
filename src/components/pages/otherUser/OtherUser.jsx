@@ -73,7 +73,7 @@ const OtherUser = () => {
                 <div className="d-flex justify-content-between">
                     <div className="mainSetting">
                         <div>
-                            <img className="profileImg" src="/images/user.png" alt="Profile pic" />
+                            <img className="profileImg" src={user.profile} alt="Profile pic" />
                         </div>
                         <div className="name">
                             <h2>{user.fname} {user.lname}</h2>

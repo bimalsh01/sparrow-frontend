@@ -38,19 +38,19 @@ const LeftSide = () => {
           </div>
 
           <div className="spaceSection">
-            <h6 className='text-center fw-bold mt-2'>Notification Log 🎉 </h6>
+            <h6 className='text-center fw-bold pt-2'>Notification Log 🎉 </h6>
             <hr />
 
            
             <div className="scroller">
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Kulman send a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
-              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'>👉  Ramesh posted a message</p>
+              <p className='text-center mt-2'>👉  Kulman commented on a post</p>
+              <p className='text-center mt-2'>👉  Ramesh Liked a answer</p>
+              <p className='text-center mt-2'>👉  Ramesh sented a message</p>
+              <p className='text-center mt-2'>👉  Ramesh sented a message</p>
+              <p className='text-center mt-2'>👉  Ramesh sented a message</p>
+              <p className='text-center mt-2'>👉  Ramesh sented a message</p>
+              <p className='text-center mt-2'>👉  Ramesh sented a message</p>
             </div>
 
           </div>

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllFollow, getAllQuestionsByUser, getUser, updatePassword, updateProfile } from '../../../http/Index';
+import { deleteQuestion, getAllFollow, getAllQuestionsByUser, getUser, updatePassword, updateProfile } from '../../../http/Index';
 import { setSnackbar } from '../../../store/SnackBar';
 import { Link } from 'react-router-dom';
 import { setProfile } from '../../../store/Slice';
+import { useRef } from 'react';
 
 
 export const Profile = () => {
   const [followerslength, setfollowerslength] = useState(null);
   const [followinglength, setfollowinglength] = useState(null);
+  const [imageValue, setImagesValue] = useState("")
+
 
   const { id, fname, secondaryEmail, lname, profile, username, followers, following, phone, address } = useSelector(state => state.Auth.user);
   const { profile_upload } = useSelector(state => state.Auth);
@@ -53,6 +56,7 @@ export const Profile = () => {
 
   useEffect(() => {
     getAllQuestionsByUser(id).then(res => {
+      console.log(res, "data");
       setData(res.data.data);
     })
   }, [])
@@ -109,9 +113,51 @@ export const Profile = () => {
       dispatch(setSnackbar(true, "success", "success", "Updated"));
 
     } catch (error) {
-      console.log(error);
+      dispatch(setSnackbar(true, "error", "error", "Password does not match!"));
+
     }
   }
+
+  // delete question
+  const delQuestion = (id) => {
+    deleteQuestion(id).then(res => {
+      const newData = data.filter(item => item._id !== id);
+      setData(newData)
+      dispatch(setSnackbar(true, "success", "success", "Question has been deleted!"));
+    }
+    ).catch(err => {
+      dispatch(setSnackbar(true, "error", "error", "Error"));
+    }
+    )
+  }
+
+  const [qsn, setQsn] = useState({
+    questionName: '',
+    questionImage: '',
+  });
+
+  const ref = useRef(null)
+
+  const editQsn = (currentQsn) => {
+    console.log(currentQsn, "currentQsn");
+    ref.current.click();
+    setQsn({
+      questionName: currentQsn.questionName,
+      questionImage: currentQsn.questionImage,
+    });
+  }
+
+  const handleChangeImages = e => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    console.log(reader.result, "Image result");
+
+    reader.onloadend = function () {
+      setImagesValue(reader.result);
+    }
+  }
+
 
   return (
     <div className='container'>
@@ -193,12 +239,19 @@ export const Profile = () => {
                 {
                   data.map(item => {
                     return (
-                      <div>
-
-                        <Link to={`/qnapage/${item._id}`}>
-                          <p className='mt-3'>{item.questionName}</p>
-                        </Link>
-                        <p className='fw-bold'>Asken on {item.createdAt}</p>
+                      <div className='d-flex justify-content-between'>
+                        <div>
+                          <Link to={`/qnapage/${item._id}`}>
+                            <p className='mt-3'>{item.questionName}</p>
+                          </Link>
+                          <p className='fw-bold'>Asked on {item.createdAt}</p>
+                        </div>
+                        <div>
+                          <div className="d-flex">
+                            <button onClick={() => { editQsn(item) }} className='btn me-2 btn-success shadow-0'><i class="fa-solid fa-pen-to-square "></i></button>
+                            <button onClick={() => { delQuestion(item._id) }} className='btn btn-danger shadow-0'><i class="fa-solid fa-trash"></i></button>
+                          </div>
+                        </div>
                       </div>
                     )
                   })
@@ -353,20 +406,20 @@ export const Profile = () => {
                     proFollowers.map(item => {
                       return (
                         <>
-                        <Link to={`/user/${item.id}`}>
-                        <div className='d-flex pt-3 pb-3'>
-                            <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
-                            <div className='ms-3'>
-                              <div className="d-flex justify-content-between">
-                                <p className='me-3'>{item.fname}</p>
-                                <p><span class="badge border">view profile</span></p>
+                          <Link to={`/user/${item.id}`}>
+                            <div className='d-flex pt-3 pb-3'>
+                              <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
+                              <div className='ms-3'>
+                                <div className="d-flex justify-content-between">
+                                  <p className='me-3'>{item.fname}</p>
+                                  <p><span class="badge border">view profile</span></p>
+                                </div>
+                                <p>@{item.username}</p>
                               </div>
-                              <p>@{item.username}</p>
                             </div>
-                          </div>
-                          <hr />
-                        </Link>
-                          
+                            <hr />
+                          </Link>
+
                         </>
                       )
                     })
@@ -385,23 +438,23 @@ export const Profile = () => {
                       return (
                         <>
                           <Link to={`/user/${item.id}`}>
-                          <div className='d-flex pt-3 pb-3'>
-                            <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
-                            <div className='ms-3'>
-                              <div className="d-flex justify-content-between">
-                                <p className='me-3'>{item.fname}</p>
-                                <p><span class="badge border">view profile</span></p>
+                            <div className='d-flex pt-3 pb-3'>
+                              <img className='bdr-50' src={item.profile} alt="" width={"10%"} />
+                              <div className='ms-3'>
+                                <div className="d-flex justify-content-between">
+                                  <p className='me-3'>{item.fname}</p>
+                                  <p><span class="badge border">view profile</span></p>
+                                </div>
+                                <p>@{item.username}</p>
                               </div>
-                              <p>@{item.username}</p>
                             </div>
-                          </div>
                           </Link>
                           <hr />
                         </>
                       )
                     })
                   }
-                  
+
 
                 </div>
               </div>
@@ -410,7 +463,51 @@ export const Profile = () => {
         </div>
       </div>
 
+      <button ref={ref} type="button" class="btn btn-primary invisible" data-mdb-toggle="modal" data-mdb-target="#exampleModal1">
+        Modal
+      </button>
+
+
+
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content ModalCard">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit your Questions</h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-outline">
+                <p>Enter detail description of your questions...</p>
+                <textarea value={qsn.questionName} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
+
+              </div>
+              <div className="d-flex justify-content-between">
+                <div>
+                <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark">
+                    <label htmlFor="file">Photo</label>
+                    <input type="file" name="file" id="file" className="imageInput"
+                      multiple accept="image/*,video/*" onChange={handleChangeImages} />
+                  </button>
+                </div>
+                {
+                  imageValue? <img className="mt-2 img-fluid bdr-50 ms-3" src={imageValue} width={"10%"} alt="QuestionImage" />
+                  : <img className="mt-2 img-fluid bdr-15" src={qsn.questionImage} width={"150px"} alt="QuestionImage" />
+                }
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn text-white" data-mdb-dismiss="modal">Close</button>
+              <button type="button" class="btn text-white">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   )
 }
 

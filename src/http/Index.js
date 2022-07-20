@@ -33,6 +33,10 @@ export const getAnswers = (questionId) => api.get(`/api/get-answers/${questionId
 export const like = (data) => api.put('/api/like', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const unlike = (data) => api.put('/api/unlike', data,  {headers:{'Authorization': `Bearer ${token}`}});
 export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${userId}`);
+
+// delete question
+export const deleteQuestion = (questionId) => api.delete(`/api/delete-question/${questionId}`, {headers:{'Authorization': `Bearer ${token}`}});
+
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
 export const follow = (data) => api.put('/api/follow', data, {headers:{'Authorization': `Bearer ${token}`}});
 export const unfollow = (data) => api.put('/api/unfollow', data, {headers:{'Authorization': `Bearer ${token}`}});

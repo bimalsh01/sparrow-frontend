@@ -88,13 +88,13 @@ const Navbar = () => {
               <div className="d-flex align-items-center mt-3">
 
                 <button data-mdb-toggle="modal" data-mdb-target="#exampleModal" type="button" className="btn btn-danger me-3">
-                  ASKed
+                  ASK
                 </button>
 
 
                 {
                   isAuth ? <>
-  
+
                     <div class="dropdown ">
                       <a
                         class="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -104,7 +104,7 @@ const Navbar = () => {
                         data-mdb-toggle="dropdown"
                         aria-expanded="false"
                       >
-                      <Avatar width={"39px"} />
+                        <Avatar width={"39px"} />
                       </a>
                       <ul
                         class="dropdown-menu dropdown-menu-end"
@@ -117,81 +117,81 @@ const Navbar = () => {
 
                           </Link>
                         </li>
-                       
+
                         <li>
                           <Link className="me-2" to={"/profile"}>
 
-                           <button onClick={Clicked} className="dropdown-item">Logout</button>
+                            <button onClick={Clicked} className="dropdown-item">Logout</button>
 
                           </Link>
                         </li>
                       </ul>
                     </div>
-               
+
                   </>
-              :
-              <Link to={'/login'}>
-                <button className="btn"><i class="fa-solid fa-right-to-bracket"></i></button>
-              </Link>
+                    :
+                    <Link to={'/login'}>
+                      <button className="btn"><i class="fa-solid fa-right-to-bracket"></i></button>
+                    </Link>
                 }
 
+              </div>
+            </ul>
           </div>
-        </ul>
-      </div>
-    </div>
-      </nav >
-  <div class="modal top " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content ModalCard">
-        <div class="modal-header">
-          <div>
-            <h5 class="modal-title fw-bold" id="exampleModalLabel">What is on your mind?</h5>
-
-
-          </div>
-          <button type="button-pr" class="btn-close btn-danger" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
+      </nav >
+      <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content ModalCard">
+            <div class="modal-header">
+              <div>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">What is on your mind?</h5>
 
-        <div class="modal-body">
-          <div class="form-outline">
-            <p>Enter detail description of your questions...</p>
-            <textarea onChange={(e) => setQuestionValue(e.target.value)} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
 
-          </div>
-          <div className="d-flex justify-content-between">
-            <div>
-              <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark"><i class="fa-solid fa-image"></i>
-                <label htmlFor="file">Photo</label>
-                <input type="file" name="file" id="file" className="imageInput"
-                  multiple accept="image/*,video/*" onChange={handleChangeImages} />
-              </button>
+              </div>
+              <button type="button-pr" class="btn-close btn-danger" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-              <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark"><i class="fa-solid fa-camera"></i> Camera</button>
+            <div class="modal-body">
+              <div class="form-outline">
+                <p>Enter detail description of your questions...</p>
+                <textarea onChange={(e) => setQuestionValue(e.target.value)} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
 
+              </div>
+              <div className="d-flex justify-content-between">
+                <div>
+                  <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark"><i class="fa-solid fa-image"></i>
+                    <label htmlFor="file">Photo</label>
+                    <input type="file" name="file" id="file" className="imageInput"
+                      multiple accept="image/*,video/*" onChange={handleChangeImages} />
+                  </button>
+
+                  <button type="button" class="btn ms-2 text-white" data-mdb-ripple-color="dark"><i class="fa-solid fa-camera"></i> Camera</button>
+
+
+                </div>
+                {
+                  imageValue !== "" && <img className="mt-2 img-fluid bdr-15" src={imageValue} width={"150px"} alt="QuestionImage" />
+                }
+
+              </div>
 
             </div>
-            {
-              imageValue !== "" && <img className="mt-2 img-fluid bdr-15" src={imageValue} width={"150px"} alt="QuestionImage" />
-            }
+            <div class="modal-footer d-flex justify-content-between">
 
+              <div className="d-flex align-items-center">
+                <Avatar width={"30px"} />
+                <p className="ms-2">Public</p>
+              </div>
+              <div>
+                <button onClick={Submit} type="button" class="btn btn-primary w-100">Add questions</button>
+
+              </div>
+
+            </div>
           </div>
-
-        </div>
-        <div class="modal-footer d-flex justify-content-between">
-
-          <div className="d-flex align-items-center">
-            <Avatar width={"30px"} />
-            <p className="ms-2">Public</p>
-          </div>
-          <div>
-            <button onClick={Submit} type="button" class="btn btn-primary w-100">Add questions</button>
-
-          </div>
-
         </div>
       </div>
-    </div>
-  </div>
     </>
   );
 };
