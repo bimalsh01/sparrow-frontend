@@ -38,6 +38,20 @@ const LeftSide = () => {
           </div>
 
           <div className="spaceSection">
+            <h6 className='text-center fw-bold mt-2'>Notification Log 🎉 </h6>
+            <hr />
+
+           
+            <div className="scroller">
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Kulman send a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+              <p className='text-center mt-2'><i class="fa-solid fa-broom-ball"></i>  Ramesh posted a message</p>
+            </div>
 
           </div>
     </>

@@ -91,11 +91,6 @@ const Navbar = () => {
                   ASK
                 </button>
 
-                {/* <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" class="fa-solid fa-circle-plus fs-2"></i> */}
-
-                {/* <Link className="me-2" to={"/admin"}>
-                  <button>Adm</button>
-                </Link> */}
 
                 {
                   isAuth ? <>

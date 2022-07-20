@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { createConversation, follow, getAllQuestionsByUser, getUser, unfollow } from '../../../http/Index';
-
+import { format } from 'timeago.js'
 const OtherUser = () => {
     const { id: _id } = useParams();
     let [data, setData] = useState([]);
@@ -117,7 +117,7 @@ const OtherUser = () => {
                                             <Link to={`/qnapage/${item._id}`}>
                                                 <p className='mt-3'>{item.questionName}</p>
                                             </Link>
-                                            <p className='fw-bold'>Asken on {item.createdAt}</p>
+                                            <p className='fw-bold'>Asken on {format(item.createdAt)}</p>
                                             <hr className='mt-2' />
                                         </div>
                                     )
