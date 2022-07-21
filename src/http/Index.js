@@ -59,9 +59,9 @@ export const addFavourite = (data) => api.post('/api/addfav', data, {headers:{'A
 export const getAllFavourite = (userId) => api.get(`/api/getfav/${userId}`);
 
 // rooms
-export const createRoom = (data) => api.post('/api/rooms',data);
-export const getAllRooms = () => api.get('/api/rooms');
-export const getRoom = (roomId) => api.get(`/api/rooms/${roomId}`);
+export const createRoom = (data) => api.post('/api/rooms',data, {headers:{'Authorization': `Bearer ${token}`}});
+export const getAllRooms = () => api.get('/api/rooms', {headers:{'Authorization': `Bearer ${token}`}});
+export const getRoom = (roomId) => api.get(`/api/rooms/${roomId}`, {headers:{'Authorization': `Bearer ${token}`}});
 
 
 // Interceptors backend and frontend checking

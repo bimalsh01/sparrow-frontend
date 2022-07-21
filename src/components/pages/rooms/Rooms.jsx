@@ -5,43 +5,6 @@ import AddRoomModal from "../addRoomModal/AddRoomModal";
 import RoomCard from "../roomCard/RoomCard";
 import style from "./Rooms.module.css";
 
-// const rooms = [
-//   {
-//     id: 1,
-//     topic: "Its about getting hign marks",
-//     speakers: [
-//       {
-//         id: 1,
-//         name: "Bimal Shrestha",
-//         avatar: "/images/logo.png",
-//       },
-//       {
-//         id: 1,
-//         name: "Bimal Shrestha",
-//         avatar: "/images/logo.png",
-//       },
-//     ],
-//     totalPeople: 40,
-//   },
-//   {
-//     id: 2,
-//     topic: "Its about getting hign marks",
-//     speakers: [
-//       {
-//         id: 1,
-//         name: "Bimal Shrestha",
-//         avatar: "/images/logo.png",
-//       },
-//       {
-//         id: 1,
-//         name: "Bimal Shrestha",
-//         avatar: "/images/logo.png",
-//       },
-//     ],
-//     totalPeople: 60,
-//   },
-// ];
-
 const Rooms = () => {
 
   const [rooms,setRooms] = useState([]);
@@ -68,8 +31,8 @@ const Rooms = () => {
         <div className={style.left}>
           {/* <span className="fs-3">Search the room</span> */}
           <div className={style.search}>
-            <i class=" fa-solid fs-3 fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search the room ..." className={style.searchInput} />
+          <i class="fa-solid fa-podcast fs-3"></i>
+            <h5 className="mt-1 ms-2">Enjoy sparrow rooms 🎉🎉</h5>
           </div>
         </div>
         <div className={style.rignt}>

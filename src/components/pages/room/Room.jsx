@@ -13,7 +13,7 @@ const Room = () => {
   const user = useSelector((state) => state.Auth.user)
   const { clients, provideRef, handleMute } = useWebRTC(roomId, user);
   const [room, setRoom] = useState('');
-  const [isMute, setMute] = useState(true);
+  const [isMute, setMute] = useState(false);
   const navigate = useNavigate();
 
   function handleManualLeave() {
@@ -23,6 +23,7 @@ const Room = () => {
   useEffect(() => {
     const fetchRoom = async () => {
       const { data } = await getRoom(roomId);
+      console.log("data", data);
       setRoom((prev) => data);
     }
     fetchRoom();
@@ -45,7 +46,7 @@ const Room = () => {
     <>
       <div>
         <div className="container">
-          <h3 className='fw-bold mb-3'>All connected clients <i class="fa-solid fa-user-group"></i></h3>
+          <h3 className='fw-bold mb-3 mt-5'>All connected clients <i class="fa-solid fa-user-group"></i></h3>
           <div className={style.goBack}>
             <button onClick={handleManualLeave} className={style.backBtn}>
               <h4><i class="fa-solid fa-circle-arrow-left me-2"></i></h4>
@@ -76,9 +77,14 @@ const Room = () => {
                     <img className={style.userAvatar} src={client.profile} alt="profile" />
 
                     <button onClick={() => handleMuteClick(client.id)} className={style.micBtn}>
-                      {
-                        client.muted ? (<i class="fa-solid fa-microphone-slash"></i>)
+                      {/* {
+                        client.muted ? (<i class="fa-solid text-success fa-microphone-slash"></i>)
                           : (<i class="fa-solid fa-microphone"></i>)
+                      } */}
+
+{
+                        isMute ? (<i class="fa-solid text-success fa-microphone-slash"></i>)
+                          : (<i class="fa-solid text-success fa-microphone"></i>)
                       }
 
                     </button>

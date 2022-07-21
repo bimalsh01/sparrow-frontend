@@ -38,6 +38,7 @@ const Navbar = () => {
       const { data } = await questions({ questionName: questionValue, qsnPhoto: imageValue });
       dispatch(setSnackbar(true, "success", "success", "Your question has been submitted"));
     } catch (error) {
+      dispatch(setSnackbar(true, "error", "error", "Failed to submit your question"));
       console.log(error)
     }
   }

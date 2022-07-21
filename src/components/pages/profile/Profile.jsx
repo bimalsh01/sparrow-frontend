@@ -510,7 +510,7 @@ export const Profile = () => {
             <div class="modal-body">
               <div class="form-outline">
                 <p>Enter detail description of your questions...</p>
-                <textarea onChange={(e) => setQuestionName(e.target.value)} placeholder="All your questions goes here ..." class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
+                <textarea onChange={(e) => setQuestionName(e.target.value)} placeholder={qsn.questionName}  class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
 
               </div>
               <div className="d-flex justify-content-between">
