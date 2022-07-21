@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AddRoomModal from "../../components/addRoomModal/AddRoomModal";
-import RoomCard from "../../components/roomCard/RoomCard";
-import { getAllRooms } from "../../http/Index";
+
+import { getAllRooms } from "../../../http/Index";
+import AddRoomModal from "../addRoomModal/AddRoomModal";
+import RoomCard from "../roomCard/RoomCard";
 import style from "./Rooms.module.css";
 
 // const rooms = [
