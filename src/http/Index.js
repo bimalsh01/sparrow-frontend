@@ -58,6 +58,12 @@ export const addFavourite = (data) => api.post('/api/addfav', data, {headers:{'A
 // get all favourite
 export const getAllFavourite = (userId) => api.get(`/api/getfav/${userId}`);
 
+// rooms
+export const createRoom = (data) => api.post('/api/rooms',data);
+export const getAllRooms = () => api.get('/api/rooms');
+export const getRoom = (roomId) => api.get(`/api/rooms/${roomId}`);
+
+
 // Interceptors backend and frontend checking
 api.interceptors.response.use((config)=>{
     return config;
