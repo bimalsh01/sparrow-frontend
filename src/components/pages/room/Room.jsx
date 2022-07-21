@@ -13,7 +13,7 @@ const Room = () => {
   const user = useSelector((state) => state.Auth.user)
   const { clients, provideRef, handleMute } = useWebRTC(roomId, user);
   const [room, setRoom] = useState('');
-  const [isMute, setMute] = useState(false);
+  const [isMute, setMute] = useState(true);
   const navigate = useNavigate();
 
   function handleManualLeave() {
@@ -61,8 +61,7 @@ const Room = () => {
             <h3 className="fw-bold">{room.topic}</h3>
 
             <div className={style.actions}>
-              <h3 className='fs-5 fw-bold'><i class="fa-solid fa-hand me-2"></i>Raise</h3>
-              <button onClick={handleManualLeave} className={style.btnLeave}>
+              <button onClick={handleManualLeave} className="btn btn-danger">
                 <i class="fa-solid fa-hand-peace"></i> Leave Peacefully!
               </button>
             </div>
@@ -77,13 +76,8 @@ const Room = () => {
                     <img className={style.userAvatar} src={client.profile} alt="profile" />
 
                     <button onClick={() => handleMuteClick(client.id)} className={style.micBtn}>
-                      {/* {
+                      {
                         client.muted ? (<i class="fa-solid text-success fa-microphone-slash"></i>)
-                          : (<i class="fa-solid fa-microphone"></i>)
-                      } */}
-
-{
-                        isMute ? (<i class="fa-solid text-success fa-microphone-slash"></i>)
                           : (<i class="fa-solid text-success fa-microphone"></i>)
                       }
 
