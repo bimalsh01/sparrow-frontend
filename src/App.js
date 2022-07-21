@@ -17,6 +17,8 @@ import Message from './components/pages/message/Message';
 import Admin from './components/pages/admin/Admin';
 import SearchResult from './components/pages/searchResult/SearchResult';
 import Favourite from './components/pages/favourite/Favourite';
+import Rooms from './components/pages/rooms/Rooms';
+import Room from './components/pages/room/Room';
 
 
 function App() {
@@ -50,6 +52,10 @@ function App() {
             <Route path='/message' exace element={<Message/>} />
             <Route path='/search' exace element={<SearchResult/>} />
             <Route path='/favourite' exace element={<Favourite/>} />
+
+            // for rooms
+            <Route path="/room" element={<Rooms/>} />
+          <Route path="/room/:id" element={<Room/>}/>
 
 
       
