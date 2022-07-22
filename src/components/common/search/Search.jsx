@@ -9,7 +9,10 @@ export const Search = () => {
     const [users, setUsers] = useState('');
 
     const handleSearch = async (e) => {
-        NavSearch({ username: search }).then(res => setUsers(res.data.users))
+        NavSearch({ username: search }).then(res => {
+            setUsers(res.data);
+        })
+
     }
 
     return (
@@ -35,12 +38,12 @@ export const Search = () => {
                             users.map(user => (
                                 <div className='d-flex p-3'>
                                     <Link to={`/user/${user.id}`}>
-                                    <div className='ms-3'>
-                                        <div className="d-flex justify-content-between">
-                                            <p className='me-3'>{user.fname} {user.lname}</p>
+                                        <div className='ms-3'>
+                                            <div className="d-flex justify-content-between">
+                                                <p className='me-3'>{user.fname} {user.lname}</p>
+                                            </div>
+                                            <p>@{user.username}</p>
                                         </div>
-                                        <p>@{user.username}</p>
-                                    </div>
                                     </Link>
                                 </div>
                             ))

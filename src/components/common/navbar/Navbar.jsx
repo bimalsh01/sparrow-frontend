@@ -38,6 +38,7 @@ const Navbar = () => {
       const { data } = await questions({ questionName: questionValue, qsnPhoto: imageValue });
       dispatch(setSnackbar(true, "success", "success", "Your question has been submitted"));
     } catch (error) {
+      dispatch(setSnackbar(true, "error", "error", "Failed to submit your question"));
       console.log(error)
     }
   }
@@ -140,8 +141,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav >
-      <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content ModalCard">
             <div class="modal-header">
               <div>

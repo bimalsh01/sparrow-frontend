@@ -10,6 +10,8 @@ import { setQsn } from "../../../store/Slice"
 import HTMLReactParser from 'html-react-parser';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { format } from 'timeago.js';
+import { setSnackbar } from '../../../store/SnackBar';
 
 const QnaPage = () => {
     const { id: _id } = useParams();
@@ -57,7 +59,13 @@ const QnaPage = () => {
 
                 setData(newData);
 
+                // setSnackbar(true);
+      dispatch(setSnackbar(true, "success", "success", "Answer posted successfully"));
+                
+
             }).catch(err => {
+      dispatch(setSnackbar(true, "error", "error", "Error in posting answer"));
+
                 console.log('This is error', err);
             })
     }
@@ -96,7 +104,7 @@ const QnaPage = () => {
                                             <img className="profile_img mt-2" src="/images/user.png" alt="Profile pic" width="8%" />
                                             <div className='ms-2'>
                                                 {/* <p>{data.answeredBy.fname} {data.answeredBy.lname}</p> */}
-                                                <p className='m-0'>Answered on {data.answeredOn}</p>
+                                                <p className='m-0'>Answered on {format(data.answeredOn)}</p>
                                             </div>
                                         </div>
                                         <p className='mt-3'>
@@ -121,10 +129,8 @@ const QnaPage = () => {
                         </button>
 
                         {
-                    image ? <img className="mt-2 img-fluid bdr-50 ms-3" src={image} width={"10%"} alt="QuestionImage" />
-                            : <img className="mt-2 img-fluid bdr-50 ms-3" src="/images/answer.jpg" width={"10%"} alt="QuestionImage" />
 
-                  }
+                        }
 
                         <button onClick={handleSubmit} className='w-100 btn btn-success mt-3 shadow-0'>Submit</button>
                     </div>
