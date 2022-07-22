@@ -141,8 +141,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav >
-      <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content ModalCard">
             <div class="modal-header">
               <div>

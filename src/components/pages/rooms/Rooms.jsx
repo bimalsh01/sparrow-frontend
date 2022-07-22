@@ -20,7 +20,6 @@ const Rooms = () => {
   const [showModal, setShowModal] = useState(false);
 
   function openModal(){
-    console.log("hello")
     setShowModal(true);
   }
 

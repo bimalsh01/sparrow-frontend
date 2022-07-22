@@ -100,6 +100,18 @@ const Message = () => {
         arrivalMessage && setMessages((prev) => [...prev , arrivalMessage]);
     }, [arrivalMessage])
 
+    // on enter key press
+    const handleKeyPress = (e) => {
+
+        // set new message on enter key press
+        setNewMessage(e.target.value);
+
+        if (e.key === 'Enter') {
+            handleSubmit(e);
+        }
+    }
+    
+
 
 
     return (
@@ -112,8 +124,8 @@ const Message = () => {
 
                     </div>
                     <div className="d-flex justify-content-center fs-5 fw-bold">
-                        <p className='me-3'>Bimal Shrestha</p>
-                        <p class="status"> <i class="fa fs-6 fa-circle offline"></i> </p>
+                        <p className='me-3'>ONLINE</p>
+                        <p class="status"> <i class="fa fs-6 fa-circle online"></i> </p>
                     </div>
 
                     <div className="d-flex justify-content-center">
@@ -197,7 +209,10 @@ const Message = () => {
                                                     type="text"
                                                     placeholder="Enter your message"
                                                     className="searchInput"
+                                                    onKeyUp={handleKeyPress}
                                                 />
+                                                
+
                                             </form>
                                         </div>
                                         <div>

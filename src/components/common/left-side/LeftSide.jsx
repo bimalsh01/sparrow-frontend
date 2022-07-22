@@ -1,11 +1,24 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { getAllRooms } from '../../../http/Index';
 import './LeftSide.css';
 
 const LeftSide = () => {
   const { fname, lname, username } = useSelector(state => state.Auth.user);
   const { profile } = useSelector(state => state.Auth.user);
+
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      const { data } = await getAllRooms();
+      setRooms(data);
+    };
+    fetchRooms();
+  }, []);
 
   return (
     <>
@@ -37,7 +50,7 @@ const LeftSide = () => {
         </Link>
 
         <Link to={'/room'}>
-          <h5 className='ms-1'><img className='me-2' src="/images/room.png" alt="" width={"11%"} />Voice Rooms</h5>
+          <h5 className='ms-1 mt-3'><img className='me-2' src="/images/room.png" alt="" width={"11%"} />Voice Rooms</h5>
         </Link>
       </div>
 
@@ -46,46 +59,36 @@ const LeftSide = () => {
         <hr />
 
 
-        <Link to={'/room'}>
-          <div className="d-flex mt-2 mb-2">
-            <div className='ms-2 me-2 mt-1'>
-              <img className='bdr-50' src="/images/wave.png" alt="" width={"120%"} />
-            </div>
-            <div className='ps-2 pe-2'>
-              <p>We are talking about space in todays sessions</p>
-              <p> <strong>Hosted by #bimal</strong> </p>
-            </div>
-          </div>
-        </Link>
-        <hr />
 
-        <Link to={'/room'}>
-          <div className="d-flex mt-2 mb-2">
-            <div className='ms-2 me-2 mt-1'>
-              <img className='bdr-50' src="/images/wave.png" alt="" width={"120%"} />
-            </div>
-            <div className='ps-2 pe-2'>
-              <p>We are talking about space in todays sessions</p>
-              <p> <strong>Hosted by #bimal</strong> </p>
-            </div>
-          </div>
-        </Link>
-        <hr />
 
-        <Link to={'/room'}>
-          <div className="d-flex mt-2 mb-2">
-            <div className='ms-2 me-2 mt-1'>
-              <img className='bdr-50' src="/images/wave.png" alt="" width={"120%"} />
-            </div>
-            <div className='ps-2 pe-2'>
-              <p>We are talking about space in todays sessions</p>
-              <p> <strong>Hosted by #bimal</strong> </p>
-            </div>
-          </div>
-        </Link>
-        <hr />
+        {
+          rooms.map((room) => {
+            return (
+              <>
+                <Link to={`/room/${room.id}`}>
+                  <div className="d-flex mt-2 mb-2">
+                    <div className='ms-2 me-2 mt-1'>
+                      <img className='bdr-50' src="/images/wave.png" alt="" width={"120%"} />
+                    </div>
+                    <div className='ps-2 pe-2'>
+                      <p>{room.topic}</p>
+                      <p> <strong>Hosted by #Bimal{room.speaker}</strong> </p>
+                    </div>
+                  </div>
+                </Link>
+                <hr />
+              </>
+            )
+          })
 
-        
+
+        }
+
+
+
+
+
+
 
 
 

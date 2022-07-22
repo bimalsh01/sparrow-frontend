@@ -4,16 +4,7 @@ import { socketInit } from '../socket/Index'
 import { ACTIONS } from "../action";
 import freeice from "freeice";
 
-const users = [
-    // {
-    //     id:1,
-    //     name:'Bimal Shrestha'
-    // },
-    // {
-    //     id:2,
-    //     name:'Johnny Jonny'
-    // }
-]
+const users = [];
 
 export const useWebRTC = (roomId, user) => {
     const [clients, setClients] = useStateWithCallback(users);

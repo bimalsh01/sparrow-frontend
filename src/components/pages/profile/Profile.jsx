@@ -9,6 +9,7 @@ import { useRef } from 'react';
 
 
 export const Profile = () => {
+  
   const [followerslength, setfollowerslength] = useState(null);
   const [followinglength, setfollowinglength] = useState(null);
   const [imageValue, setImagesValue] = useState("")
@@ -135,8 +136,9 @@ export const Profile = () => {
     questionName: '',
     questionImage: '',
   });
+
   // for editing question
-  const [questionValue, setQuestionName] = useState("")
+  const [questionValue, setQuestionName] = useState('');
 
   const ref = useRef(null)
 
@@ -148,6 +150,7 @@ export const Profile = () => {
       questionName: currentQsn.questionName,
       questionImage: currentQsn.questionImage,
     });
+    setQuestionName(currentQsn.questionName);
   }
 
   // for editing question
@@ -510,7 +513,8 @@ export const Profile = () => {
             <div class="modal-body">
               <div class="form-outline">
                 <p>Enter detail description of your questions...</p>
-                <textarea onChange={(e) => setQuestionName(e.target.value)} placeholder={qsn.questionName}  class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
+
+                <textarea onChange={(e) => setQuestionName(e.target.value)} value={questionValue}  class="form-control text-white blurBox mb-2 mt-2" rows="4"></textarea>
 
               </div>
               <div className="d-flex justify-content-between">

@@ -15,6 +15,7 @@ const Room = () => {
   const [room, setRoom] = useState('');
   const [isMute, setMute] = useState(true);
   const navigate = useNavigate();
+  
 
   function handleManualLeave() {
     navigate('/room')
@@ -41,6 +42,7 @@ const Room = () => {
     console.log(isMute)
   }
 
+  console.log(clients);
 
   return (
     <>

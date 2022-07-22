@@ -20,7 +20,7 @@
     position: relative;
     width: 50%;
     max-width: 450px;
-    background: rgb(59, 15, 164);
+    background: rgba(79, 36, 179, 0.709);
     border-radius: 10px;
 }
 
@@ -67,6 +67,7 @@
     right: 3px;
     top: 3px;
     background: transparent;
-    color: wheat;
+    border: none;   
+    padding: 10px;
     
 }

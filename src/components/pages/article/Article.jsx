@@ -13,9 +13,7 @@ import LikeCount from '../../common/LikeCount';
 import { format } from 'timeago.js'
 
 const Article = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([])
-    const [likeLength, setlikeLength] = useState(null);
 
     // get id useSelector from redux
     const {id} = useSelector(state => state.Auth.user)
