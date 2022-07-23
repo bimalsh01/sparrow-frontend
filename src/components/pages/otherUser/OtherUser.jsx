@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, Navigate } from 'react-router-dom';
 import { createConversation, follow, getAllQuestionsByUser, getUser, unfollow } from '../../../http/Index';
 import { format } from 'timeago.js'
 const OtherUser = () => {
@@ -13,10 +13,11 @@ const OtherUser = () => {
 
     const { id } = useSelector(state => state.Auth.user);
 
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         getAllQuestionsByUser(_id).then(res => {
-            console.log(res);
             setData(res.data.data);
         })
         getUser(_id).then(res => {
@@ -62,8 +63,11 @@ const OtherUser = () => {
         createConversation({ senderId: id, receiverId: _id }).then(res => {
             console.log("Got it", res);
         });
+        
+        navigate('/message');
+        
     }
-
+ 
 
 
 

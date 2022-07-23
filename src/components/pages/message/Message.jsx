@@ -23,6 +23,7 @@ const Message = () => {
         getConversations(user.id).then(res => {
             setConversation(res.data);
         })
+        
     }, [user])
 
 
@@ -30,6 +31,7 @@ const Message = () => {
         if(currentChat){
             try {
                 getMessages(currentChat._id).then(res => {
+                    console.log(res.data, "messagesddddddd");
                     setMessages(res.data);
                 })
             } catch (error) {
