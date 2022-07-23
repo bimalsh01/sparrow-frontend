@@ -42,3 +42,15 @@
     border-radius: 10px;
     border: 1px solid rgba(252, 252, 252, 0.18);
 }
+
+.dropdwn{
+    color: rgb(176, 130, 130)  ;
+    backdrop-filter: blur(17px);
+    top: 1%;
+    border-radius: 7px;
+    background: rgba(0, 0, 0, 0.429);
+}
+.dropdown-item:hover{
+    background: rgba(175, 174, 174, 0.429) !important; 
+}
+

@@ -48,7 +48,7 @@ const Favourite = () => {
                                         <div className="favcard">
                                             <img src={item.questionId.questionImage} class="card-img-top" alt="Hollywood Sign on The Hill" />
                                             <div class="card-body">
-                                                <h5 class="card-title">Posted by, {item.userId.fname}</h5>
+                                                {/* <h5 class="card-title">Posted by, {item.fname}</h5> */}
                                                 <p class="card-text">
                                                     {
                                                         item.questionId.questionName

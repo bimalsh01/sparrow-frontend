@@ -204,8 +204,6 @@ body {
 .imessage {
     display: flex;
     flex-direction: column;
-
-
 }
 
 .imessage p {

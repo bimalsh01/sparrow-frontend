@@ -22,6 +22,8 @@ const QnaPage = () => {
 
     const [image, setImage] = useState("");
 
+    const{fname} = useSelector(state => state.Auth.user)
+
 
     console.log(qsn, "qsn");
 
@@ -48,7 +50,7 @@ const QnaPage = () => {
     async function handleSubmit() {
         console.log(image, "answer");
 
-        await postAnswer({ ansImage: image, questionId: _id, answer: answer })
+        await postAnswer({ ansImage: image, questionId: _id, answer: answer, answeredByName: fname })
             .then(result => {
                 const newData = data.map(item => {
                     if (item._id === _id) {
@@ -92,7 +94,7 @@ const QnaPage = () => {
                     <div className="contents">
                         <div className="modal__question">
                             <h5><b>{qsn.questionName}</b></h5>
-                            <p>Asked by <u>{qsn.postedBy.fname} {qsn.postedBy.lname}</u> on <u>{qsn.createdAt}</u></p>
+                            <p>Asked by <strong><u>{qsn.postedBy.fname} {qsn.postedBy.lname}</u></strong> about {format(qsn.createdAt)}</p>
                         </div>
 
                         {
@@ -101,16 +103,19 @@ const QnaPage = () => {
                                     <div>
                                         <hr className='mt-3 mb-3' />
                                         <div className="answer d-flex align-items-center">
-                                            <img className="profile_img mt-2" src="/images/user.png" alt="Profile pic" width="8%" />
+                                            <img className="profile_img mt-2" src="/images/user.png" alt="Profile pic" width="6%" />
                                             <div className='ms-2'>
                                                 {/* <p>{data.answeredBy.fname} {data.answeredBy.lname}</p> */}
-                                                <p className='m-0'>Answered on {format(data.answeredOn)}</p>
+                                                <p className='mt-2'>Answered by {data.answeredBy.fname} {data.answeredBy.lname} about {format(data.answeredOn)}</p>
                                             </div>
                                         </div>
                                         <p className='mt-3'>
                                             {HTMLReactParser(data.text)}
                                         </p>
-                                        <img className='qnaImage' src="/images/answer.jpg" alt="" width={"100%"} />
+                                        {
+                                            data.answerImage == "default"? <img className="qnaImage mt-1" src="/images/answer.jpg" alt="Answer" width={"100%"} /> : 
+                                            <img className='qnaImage mt-1' src={data.answerImage} alt="" width={"100%"} />
+                                        }
 
                                     </div>
                                 )

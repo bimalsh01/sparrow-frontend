@@ -16,8 +16,8 @@ const Article = () => {
     const [data, setData] = useState([])
 
     // get id useSelector from redux
-    const {id} = useSelector(state => state.Auth.user)
-    
+    const { id } = useSelector(state => state.Auth.user)
+
 
     useEffect(() => {
         getQuestions().then(res => {
@@ -28,7 +28,7 @@ const Article = () => {
 
     const likePost = (id) => {
         console.log(id, "like post id");
-        like({questionId:id}).then(res => {
+        like({ questionId: id }).then(res => {
             console.log(res, "like response");
         })
     }
@@ -41,7 +41,7 @@ const Article = () => {
 
     // Add to favourite
     const addToFavourite = (qid) => {
-        addFavourite({userId:id,questionId:qid}).then(res => {
+        addFavourite({ userId: id, questionId: qid }).then(res => {
             console.log(res, "add to favourite response");
         })
     }
@@ -56,11 +56,13 @@ const Article = () => {
                 data.map(data => {
                     return (
                         <div className='ArticleCard mb-3'>
+                            <Link to={`/user/${data.postedBy._id}`}>
                             <div className="post__info">
                                 <img className='profileImgg' src={data.postedBy.profile} alt="profile" width={"40px"} />
                                 <h5 className='mt-1'>@{data.postedBy.username}</h5>
-                                <small>posted on {format(data.createdAt)}</small>
+                                <h6 className='mt-1 ms-2'>posted about {format(data.createdAt)}</h6>
                             </div>
+                            </Link>
                             <div className="post__body justify-content-between">
                                 <Link to={`/qnapage/${data._id}`}>
                                     <h5>{data.questionName}</h5>
@@ -70,7 +72,11 @@ const Article = () => {
                             {data.answers.slice(0, 1).map(answerData => {
                                 return (
                                     <div className="post__answer">
-                                        <h6 className='fw-bold mt-2'>Answered by <u><a href="#"> {answerData.answeredBy} </a></u>on {format(answerData.answeredOn)} </h6>
+                                        <h6 className='fw-bold mt-2'>Answered by <u>
+                                            <Link className='text-white' to={`/user/${answerData.answeredBy}`}>
+                                                {answerData.answeredByName}
+                                            </Link>
+                                        </u> about {format(answerData.answeredOn)} </h6>
                                         {answerData.text == "" ?
                                             <p>No answer yet</p>
                                             :
@@ -80,19 +86,19 @@ const Article = () => {
                                 )
                             })}
                             {
-                                data.questionImage ? <img className='qnaImage' src={data.questionImage} alt="" width={"100%"} /> : <div></div>
+                                data.questionImage ? <img className='qnaImage mt-2' src={data.questionImage} alt="" width={"100%"} /> : <div></div>
                             }
 
                             <div className="post__footer d-flex justify-content-between mt-3">
                                 <div className="post_footerAction">
-                                    <LikeCount data={data}/>
+                                    <LikeCount data={data} />
                                     <Link to={`/qnapage/${data._id}`}>
                                         <button type="button" class="btn ms-2 btn-outline-light" data-mdb-ripple-color="dark">Add Answer</button>
                                     </Link>
                                     <button type="button" class="btn ms-2" data-mdb-ripple-color="dark"><i class="fa-solid fa-share"></i></button>
                                 </div>
                                 <div className="rightSide">
-                                    <button onClick={() => {addToFavourite(data._id)}} type="button" class="btn ms-2 fs-6 shadow-0" data-mdb-ripple-color="dark"><i class="fa-solid fa-bookmark"></i></button>
+                                    <button onClick={() => { addToFavourite(data._id) }} type="button" class="btn ms-2 fs-6 shadow-0" data-mdb-ripple-color="dark"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
                         </div>

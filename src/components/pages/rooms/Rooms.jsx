@@ -35,7 +35,7 @@ const Rooms = () => {
           </div>
         </div>
         <div className={style.rignt}>
-          <button onClick={openModal} className="btn btn-success shadow-0">
+          <button onClick={openModal} className="btn shadow-0">
             <span className="fw-bold">Create a room</span>
             <i class="fa-solid fa-microphone-lines ms-2 fw-bold"></i>
 

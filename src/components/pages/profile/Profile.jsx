@@ -65,20 +65,15 @@ export const Profile = () => {
   // get all followers and following
   useEffect(() => {
     getAllFollow(id).then(res => {
+      console.log(res, "datadsdsdsdsdsdsd");
       setProFollowers(res.data.followers);
+      setfollowerslength(res.data.followers.length);
       setProFollowings(res.data.followings);
+      setfollowinglength(res.data.followings.length);
     })
   }, [])
 
   console.log(proFollowings, "proFollowers");
-
-  useEffect(() => {
-    getUser(id).then(res => {
-      setfollowerslength(res.data.user.followers.length);
-      setfollowinglength(res.data.user.followings.length);
-    })
-  }, [])
-
 
   async function UpdateInfo(e) {
     e.preventDefault();
@@ -110,10 +105,10 @@ export const Profile = () => {
 
     try {
       const { data } = await updatePassword({ id: id, oldPassword: oldpassword, newPassword: newpassword });
-      dispatch(setSnackbar(true, "success", "success", "Updated"));
+      dispatch(setSnackbar(true, "success", "success", "Password Updated"));
 
     } catch (error) {
-      dispatch(setSnackbar(true, "error", "error", "Password does not match!"));
+      dispatch(setSnackbar(true, "error", "error", "Password mismatch or old password is wrong!"));
 
     }
   }
@@ -126,7 +121,8 @@ export const Profile = () => {
       dispatch(setSnackbar(true, "success", "success", "Question has been deleted!"));
     }
     ).catch(err => {
-      dispatch(setSnackbar(true, "error", "error", "Error"));
+      console.log(err);
+      dispatch(setSnackbar(true, "error", "error", "Question deletion failed!"));
     }
     )
   }

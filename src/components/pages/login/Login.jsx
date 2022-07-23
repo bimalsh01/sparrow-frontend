@@ -14,22 +14,20 @@ const Login = () => {
 
   async function loginClick(e) {
     e.preventDefault();
-    const { data } = await login({ phone, password });
-    console.log(data);
 
-    if (data.status === 404) {
-      dispatch(setSnackbar(true, "error", "error", "User not found!"));
-  
-      }
-
-    // is json return is 401 then show error
-    if (data.status === 401) {
-    dispatch(setSnackbar(true, "error", "error", "Password is incorrect"));
-
+    // check if phone and password are not empty
+    if (phone.length === 0 || password.length === 0) {
+      dispatch(setSnackbar(true, "error", "error", "Please fill all fields"));
+      return;
     }
 
-    dispatch(setAuth(data));
-    dispatch(setSnackbar(true, "success", "success", "Login Successful"));
+    try {
+      const { data } = await login({ phone, password });
+      dispatch(setAuth(data));
+      dispatch(setSnackbar(true, "success", "success", "Login Successful"));
+    } catch (error) {
+      dispatch(setSnackbar(true, "error", "error", "Either username or password is incorrect"));
+    }
   }
 
   return (

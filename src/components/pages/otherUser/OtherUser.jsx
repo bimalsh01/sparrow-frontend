@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, useParams, useNavigate, Navigate } from 'react-router-dom';
 import { createConversation, follow, getAllQuestionsByUser, getUser, unfollow } from '../../../http/Index';
 import { format } from 'timeago.js'
+
 const OtherUser = () => {
     const { id: _id } = useParams();
     let [data, setData] = useState([]);

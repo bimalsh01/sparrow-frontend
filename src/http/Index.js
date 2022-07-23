@@ -2,6 +2,14 @@ import axios from 'axios';
 
 const token = localStorage.getItem('accessToken');
 
+// config authorization header 
+const config ={
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    }
+}
+
+
 console.log(localStorage.getItem('token'));
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -38,7 +46,7 @@ export const getAllQuestionsByUser = (userId) => api.get(`/api/get-questions/${u
 export const editQuestion = (data) => api.post('/api/editquestion', data, {headers:{'Authorization': `Bearer ${token}`}});
 
 // delete question
-export const deleteQuestion = (questionId) => api.delete(`/api/delete-question/${questionId}`, {headers:{'Authorization': `Bearer ${token}`}});
+export const deleteQuestion = (questionId) => api.delete(`/api/delete-question/${questionId}`,{headers:{'Authorization': `Bearer ${token}`}});
 
 export const getUser = (userId) => api.get(`/api/user/${userId}`);
 export const follow = (data) => api.put('/api/follow', data, {headers:{'Authorization': `Bearer ${token}`}});

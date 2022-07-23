@@ -23,7 +23,7 @@ const Conversation = ({conversation, currentUser, socket}) => {
     return (
         <>
             <li class="clearfix">
-                <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar" />
+                <img src={user.profile} alt="avatar" />
                 <div class="about">
                     <div class="name">@{user.username}</div>
                     <div class="status"> <i class="fa fa-circle online"></i> online </div>

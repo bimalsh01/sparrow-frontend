@@ -26,7 +26,7 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     }
-    dispatch(setSnackbar(true, "error", "error", "Logout Success!"));
+    dispatch(setSnackbar(true, "success", "success", "Logout Success!"));
   }
 
   async function Submit() {
@@ -108,21 +108,21 @@ const Navbar = () => {
                         <Avatar width={"39px"} />
                       </a>
                       <ul
-                        class="dropdown-menu dropdown-menu-end"
+                        class="dropdown-menu dropdown-menu-end dropdwn"
                         aria-labelledby="navbarDropdownMenuAvatar"
                       >
-                        <li>
-                          <Link className="me-2" to={"/profile"}>
+                        <li className="linav">
+                          <Link to={"/profile"}>
 
-                            <a class="dropdown-item" href="#">My profile</a>
+                            <a class="dropdown-item text-white" href="#">My profile</a>
 
                           </Link>
                         </li>
 
                         <li>
-                          <Link className="me-2" to={"/profile"}>
+                          <Link to={"/profile"}>
 
-                            <button onClick={Clicked} className="dropdown-item">Logout</button>
+                            <button onClick={Clicked} className="dropdown-item text-white">Logout</button>
 
                           </Link>
                         </li>

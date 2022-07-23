@@ -3,6 +3,7 @@ import { QsnSearch } from '../../../http/Index';
 import LeftSide from '../../common/left-side/LeftSide'
 import { Space } from '../space/Space'
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 const SearchResult = () => {
   const [search, setSearch] = useState('');
@@ -38,7 +39,7 @@ const SearchResult = () => {
             }
 
 
-            <hr />
+          
            
 
             {
@@ -56,7 +57,7 @@ const SearchResult = () => {
                         </p>
                         </Link>
                         <h6 className='mt-2 fw-bold'>
-                          Asked by {qsn.postedBy.fname} on {qsn.createdAt}
+                          Asked by {qsn.postedBy.fname} about {format(qsn.createdAt)}
                         </h6>
                       </div>
                       </div>
