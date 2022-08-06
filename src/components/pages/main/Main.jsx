@@ -31,7 +31,7 @@ const Main = () => {
 
             <Link to={"/login"}>
               <button className="btn btn-outline-light btn-lg mt-5">
-                Want to be a next flying bird? join now
+                DESIGNED AND DEVELOPED BY BIMAL SHRESTHA _ GITHUB @ITSBIMAL
               </button>
             </Link>
           </div>

@@ -25,7 +25,6 @@ const Authenticate = () => {
   }
 
   async function Verify(e) {
-    e.preventDefault();
     if (!userOtp || !phone || !hash) {
       return;
     }
