@@ -2,6 +2,8 @@
 
 A React-based frontend for the Hotel Management System, providing tailored interfaces for both hotel staff (Admin) and guests (User) to manage bookings, room availability, and customer information.
 
+https://www.youtube.com/your-demo-video-link
+
 ## Features
 
 ### Admin Role
@@ -27,16 +29,6 @@ A React-based frontend for the Hotel Management System, providing tailored inter
 
 The frontend communicates with the backend via a RESTful API, handling operations for both Admin and User roles, such as room management, bookings, and customer data.
 
-## Screenshots
-
-| Admin Dashboard | Room Management |
-|-----------------|-----------------|
-| ![Admin Dashboard](screenshots/admin-dashboard.png) | ![Room Management](screenshots/room-management.png) |
-
-| User Booking | Booking History |
-|--------------|-----------------|
-| ![User Booking](screenshots/user-booking.png) | ![Booking History](screenshots/booking-history.png) |
-
 ## Future Works
 
 - **Mobile Optimization:** Enhance responsiveness and usability on mobile devices.
@@ -54,10 +46,15 @@ The frontend communicates with the backend via a RESTful API, handling operation
 
 - `REACT_APP_API_URL`: The base URL of the backend API
 
-## License
-
-This project is licensed under the MIT License.
 
 ## Authors
 
-- **Your Name** - [GitHub](https://github.com/your-username)
+- **Elon Musk**
+
+## Appendix
+
+### Figure 1: Admin Dashboard
+![66a56d3bc890de5bbc0e407e_60bdcf18caffb600e9c53455_Frame%201](https://github.com/user-attachments/assets/61bcceb3-540c-4e4e-8acd-911e5b10b32d)
+
+
+
